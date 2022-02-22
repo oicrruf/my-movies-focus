@@ -2,12 +2,22 @@ import axios from 'axios';
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const storeData = async (value: string) => {
+	try {
+		let jsonValue = JSON.stringify(value);
+		await AsyncStorage.setItem('@storage_token', jsonValue);
+	} catch (error) {
+		console.log(error);
+	}
+};
 
 const singIn = async (values: object) => {
 	try {
 		let response = await axios.post('https://reqres.in/api/login', values);
 		let data = response.data;
-		console.log(data);
+		storeData(data);
 		return data;
 	} catch (error) {
 		console.log(error);
