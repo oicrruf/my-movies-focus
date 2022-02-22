@@ -1,31 +1,6 @@
-/**
- * @format
- */
-
-import LottieView from 'lottie-react-native';
+import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-
-const Splash: React.FC = () => {
-	return (
-		<View style={styles.box}>
-			<LottieView
-				style={styles.animation}
-				source={require('./assets/movie-cut.json')}
-				autoPlay
-				loop
-			/>
-		</View>
-	);
-};
-
-const Login: React.FC = () => {
-	return (
-		<View>
-			<Text>Login</Text>
-		</View>
-	);
-};
+import {LoginScreen, SplashScreen} from './src/navigation';
 
 const App = () => {
 	const [loading, setLoading] = useState(true);
@@ -36,25 +11,11 @@ const App = () => {
 		}, 3000);
 	}, []);
 
-	if (loading) {
-		return <Splash />;
-	} else {
-		return <Login />;
-	}
+	return (
+		<NavigationContainer>
+			{loading ? <SplashScreen /> : <LoginScreen />}
+		</NavigationContainer>
+	);
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-	box: {
-		flex: 1,
-		width: '100%',
-		justifyContent: 'center',
-	},
-	animation: {
-		width: '40%',
-		display: 'flex',
-		flexDirection: 'column',
-		alignSelf: 'center',
-	},
-});
