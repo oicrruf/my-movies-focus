@@ -1,0 +1,7 @@
+{
+	"server": {
+		"login": "https://reqres.in/api/login",
+		"movies": "https://api.themoviedb.org"
+	},
+	"api_key": "c93f3323912a37d0bf800fb8f862ac62"
+}

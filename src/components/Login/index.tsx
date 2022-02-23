@@ -1,8 +1,14 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getData} from '../../utils';
+import config from '../../config/enviroment.json';
+
+interface Props {
+	navigation: any;
+}
 
 const storeData = async (value: string) => {
 	try {
@@ -14,8 +20,9 @@ const storeData = async (value: string) => {
 };
 
 const singIn = async (values: object) => {
+	let {login} = config.server;
 	try {
-		let response = await axios.post('https://reqres.in/api/login', values);
+		let response = await axios.post(login, values);
 		let data = response.data;
 		storeData(data);
 		return data;
@@ -24,8 +31,22 @@ const singIn = async (values: object) => {
 	}
 };
 
-const Login: React.FC = () => {
+const Login: React.FC<Props> = props => {
+	const {navigation} = props;
 	const [values, setValues] = useState({});
+	const [isAuthenticate, setIsAuthenticate] = useState(false);
+
+	useEffect(() => {
+		getData('@storage_token').then(token => {
+			token !== null && setIsAuthenticate(true);
+		});
+	}, [navigation]);
+
+	useEffect(() => {
+		isAuthenticate && navigation.navigate('HomeScreen');
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isAuthenticate]);
+
 	return (
 		<View style={styles.container}>
 			<Input
