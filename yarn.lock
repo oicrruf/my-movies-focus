@@ -6588,6 +6588,11 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
+"react-native-bottom-action-sheet@^2.0.2":
+  "integrity" "sha512-bZjac4z4lniGT6Dv3EI9yceM/MfZN2AVjy/4YXClIj9HtHRt5vpe0L7LzxsJoU4ut8EmEZeJ18dHAykeqMffSw=="
+  "resolved" "https://registry.npmjs.org/react-native-bottom-action-sheet/-/react-native-bottom-action-sheet-2.0.2.tgz"
+  "version" "2.0.2"
+
 "react-native-codegen@*", "react-native-codegen@^0.0.8":
   "integrity" "sha512-k/944+0XD+8l7zDaiKfYabyEKmAmyZgS1mj+4LcSRPyHnrjgCHKrh/Y6jM6kucQ6xU1+1uyMmF/dSkikxK8i+Q=="
   "resolved" "https://registry.npmjs.org/react-native-codegen/-/react-native-codegen-0.0.8.tgz"
@@ -6629,6 +6634,11 @@
   "version" "8.0.4"
   dependencies:
     "lodash" "^4.17.15"
+
+"react-native-raw-bottom-sheet@^2.2.0":
+  "integrity" "sha512-qL4JKIqvbcVxbkKzeh51hjV7suoJN3ouxzvLmOg0FBUV1yiJAfEbacjQdtRCI6+OU5pyGFBIifLsTXcFDwHggg=="
+  "resolved" "https://registry.npmjs.org/react-native-raw-bottom-sheet/-/react-native-raw-bottom-sheet-2.2.0.tgz"
+  "version" "2.2.0"
 
 "react-native-safe-area-context@^3.1.9", "react-native-safe-area-context@^3.4.1", "react-native-safe-area-context@>= 3.0.0":
   "integrity" "sha512-xfpVd0CiZR7oBhuwJ2HcZMehg5bjha1Ohu1XHpcT+9ykula0TgovH2BNU0R5Krzf/jBR1LMjR6VabxdlUjqxcA=="
