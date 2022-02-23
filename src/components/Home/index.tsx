@@ -48,10 +48,9 @@ const Home: React.FC = () => {
 					source={{
 						uri: `https://www.themoviedb.org/t/p/w220_and_h330_face/${item.poster_path}`,
 					}}
-					containerStyle={index !== 0 ? styles.image : styles.main}
+					containerStyle={styles.image}
 					PlaceholderContent={<ActivityIndicator />}
 				/>
-				<Text>{item.original_title}</Text>
 			</View>
 		);
 
@@ -59,6 +58,7 @@ const Home: React.FC = () => {
 		<View style={styles.container}>
 			<FlatList
 				data={popularMovies}
+				numColumns={3}
 				renderItem={renderItem}
 				keyExtractor={item => item.id}
 			/>
@@ -71,28 +71,23 @@ export default Home;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		backgroundColor: '#000',
 	},
 	image: {
 		aspectRatio: 9 / 16,
-		width: '30%',
-		flex: 1,
+		width: '100%',
+		marginVertical: 10,
 	},
 	mainContainer: {
 		flexDirection: 'row',
 		height: 500,
 		width: '100%',
-		backgroundColor: 'black',
 	},
 	main: {
 		aspectRatio: 9 / 11,
 		width: '100%',
 	},
-	others: {
-		flexDirection: 'column',
-		height: 200,
-		padding: 5,
-		backgroundColor: 'black',
-	},
+	others: {flex: 1, marginHorizontal: 10},
 	text: {
 		color: '#fff',
 		padding: 5,
