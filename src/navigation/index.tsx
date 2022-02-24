@@ -1,11 +1,16 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+// import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+	CardStyleInterpolators,
+	createStackNavigator,
+} from '@react-navigation/stack';
 import React from 'react';
 import Login from '../components/Login';
 import Splash from '../components/Splash';
 import Home from '../components/Home';
 import Detail from '../components/Detail';
+import Search from '../components/Search';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const screenOptionStyle = {
 	headerShown: false,
@@ -15,6 +20,16 @@ const screenOptionsStyleHeader = {
 	title: '',
 	headerTintColor: '#fff',
 	headerTransparent: true,
+};
+
+const screenOptionsStyleHeaderWhitTransition = {
+	title: '',
+	headerTransparent: false,
+	headerStyle: {
+		backgroundColor: '#000',
+	},
+	headerTintColor: '#fff',
+	cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
 };
 
 export const SplashScreen = () => {
@@ -49,6 +64,11 @@ export const HomeScreen = () => {
 				name="Detail"
 				component={Detail}
 				options={screenOptionsStyleHeader}
+			/>
+			<Stack.Screen
+				name="Search"
+				component={Search}
+				options={screenOptionsStyleHeaderWhitTransition}
 			/>
 		</Stack.Navigator>
 	);
