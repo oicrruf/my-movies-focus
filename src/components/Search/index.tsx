@@ -8,7 +8,7 @@ import {
 	FlatList,
 	ActivityIndicator,
 } from 'react-native';
-import {getUpcomingMovies} from '../../utils';
+import {getUpcomingMovies, getSearchingMovies} from '../../utils';
 
 const SearchItem: React.FC = props => {
 	const {detail} = props;
@@ -27,22 +27,23 @@ const SearchItem: React.FC = props => {
 	);
 };
 
-const Header: React.FC = () => {
-	const [search, setSearch] = useState('');
-
-	const searchMovie = (name: string) => {
-		setSearch(name);
-	};
+const Header: React.FC = props => {
+	const [inputSearch, setInputSearch] = useState('');
 
 	useEffect(() => {
-		console.log(search);
-	}, [search]);
+		getSearchingMovies(inputSearch)
+			.then(m => {
+				props.searching(m.results);
+			})
+			.catch(e => console.log(e));
+	}, [inputSearch]);
+
 	return (
 		<View style={{backgroundColor: '#000', flex: 1}}>
 			<SearchBar
 				placeholder="Search for a movie"
-				onChangeText={searchMovie}
-				value={search}
+				onChangeText={setInputSearch}
+				value={inputSearch}
 				containerStyle={styles.searchBarContainerStyle}
 				inputContainerStyle={styles.searchBarInputContainerStyle}
 			/>
@@ -69,7 +70,7 @@ const Search: React.FC = () => {
 				renderItem={({item}) => <SearchItem detail={item} />}
 				// keyExtractor={item => item.id}
 				// ItemSeparatorComponent={ItemDivider}
-				ListHeaderComponent={Header}
+				ListHeaderComponent={<Header searching={setSearhMovies} />}
 				ListHeaderComponentStyle={styles.ListHeaderComponentStyle}
 				stickyHeaderIndices={[0]}
 			/>

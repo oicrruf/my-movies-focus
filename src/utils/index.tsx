@@ -47,3 +47,14 @@ export const getUpcomingMovies = async () => {
 		console.log(error);
 	}
 };
+
+export const getSearchingMovies = async (name: string) => {
+	try {
+		let response = await axios.get(
+			`${config.server.movies}/3/search/multi?api_key=${config.api_key}&query=${name}`,
+		);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+	}
+};
