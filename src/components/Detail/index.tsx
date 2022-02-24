@@ -7,22 +7,31 @@ import {
 	TouchableWithoutFeedback,
 } from 'react-native';
 import {Image} from 'react-native-elements/dist/image/Image';
-import {getPopularMovies} from '../../utils';
+import {getRelatedMovies} from '../../utils';
 import LinearGradient from 'react-native-linear-gradient';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {Button, Text} from 'react-native-elements';
 
-const Home: React.FC = ({navigation}) => {
+const Detail: React.FC = ({route, navigation}) => {
 	const [popularMovies, setPopularMovies] = useState([]);
 	const moviesRef = useRef([]);
 
+	const {
+		id,
+		original_title,
+		release_date,
+		overview,
+		vote_average,
+		backdrop_path,
+	} = route.params;
+
 	useEffect(() => {
-		getPopularMovies()
+		getRelatedMovies(id)
 			.then(movies => {
 				setPopularMovies(movies.results);
 			})
 			.catch(e => console.log(e));
-	}, []);
+	}, [id]);
 
 	const renderItem = ({item, index}) =>
 		index === 0 ? (
@@ -30,17 +39,17 @@ const Home: React.FC = ({navigation}) => {
 				<View>
 					<Image
 						source={{
-							uri: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${item.poster_path}`,
+							uri: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${backdrop_path}`,
 						}}
 						containerStyle={styles.main}
 						PlaceholderContent={<ActivityIndicator />}
 					/>
 					<View style={styles.detail}>
 						<LinearGradient colors={['transparent', '#000']}>
-							<Text style={styles.text}>{item.original_title}</Text>
-							<Text style={styles.text}>{item.overview}</Text>
-							<Text style={styles.text}>{item.release_date}</Text>
-							<Text style={styles.text}>{item.vote_average}</Text>
+							<Text style={styles.text}>{original_title}</Text>
+							<Text style={styles.text}>{overview}</Text>
+							<Text style={styles.text}>{release_date}</Text>
+							<Text style={styles.text}>{vote_average}</Text>
 						</LinearGradient>
 					</View>
 				</View>
@@ -84,7 +93,7 @@ const Home: React.FC = ({navigation}) => {
 							<View style={styles.infoDetail}>
 								<Text style={styles.text}>{item.original_title}</Text>
 								<Text style={styles.text}>{item.release_date}</Text>
-								<Text style={styles.textOverview}>{item.overview}</Text>
+								<Text style={styles.text}>{item.overview}</Text>
 								<Text style={styles.text}>{item.vote_average}</Text>
 								<Button
 									title="Details & More"
@@ -121,7 +130,7 @@ const Home: React.FC = ({navigation}) => {
 	);
 };
 
-export default Home;
+export default Detail;
 
 const styles = StyleSheet.create({
 	textOverview: {
@@ -138,7 +147,6 @@ const styles = StyleSheet.create({
 		marginHorizontal: 50,
 		marginVertical: 10,
 	},
-	titleButtonStyle: {marginHorizontal: 20, color: 'black'},
 	container: {
 		flex: 1,
 		backgroundColor: '#000',
