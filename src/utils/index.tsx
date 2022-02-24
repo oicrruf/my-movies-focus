@@ -36,3 +36,14 @@ export const getRelatedMovies = async (id: number) => {
 		console.log(error);
 	}
 };
+
+export const getUpcomingMovies = async () => {
+	try {
+		let response = await axios.get(
+			`${config.server.movies}/3/movie/upcoming?api_key=${config.api_key}`,
+		);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+	}
+};
