@@ -25,3 +25,14 @@ export const getPopularMovies = async () => {
 		console.log(error);
 	}
 };
+
+export const getRelatedMovies = async (id: number) => {
+	try {
+		let response = await axios.get(
+			`${config.server.movies}/3/movie/${id}/similar?api_key=${config.api_key}`,
+		);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+	}
+};
