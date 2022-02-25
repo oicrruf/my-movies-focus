@@ -11,6 +11,7 @@ import {getRelatedMovies} from '../../utils';
 import LinearGradient from 'react-native-linear-gradient';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {Button, Text} from 'react-native-elements';
+import {Icon} from 'react-native-elements';
 
 const Detail: React.FC = ({route, navigation}) => {
 	const [popularMovies, setPopularMovies] = useState([]);
@@ -24,6 +25,24 @@ const Detail: React.FC = ({route, navigation}) => {
 		vote_average,
 		backdrop_path,
 	} = route.params;
+
+	useEffect(() => {
+		navigation.setOptions({
+			headerRight: () => (
+				<TouchableWithoutFeedback
+					onPress={() => {
+						navigation.navigate('SearchScreen');
+					}}>
+					<Icon
+						name="search"
+						color="#fff"
+						containerStyle={styles.buttonSearchStyle}
+						tvParallaxProperties={undefined}
+					/>
+				</TouchableWithoutFeedback>
+			),
+		});
+	}, [navigation]);
 
 	useEffect(() => {
 		getRelatedMovies(id)
@@ -186,5 +205,8 @@ const styles = StyleSheet.create({
 	detail: {
 		position: 'absolute',
 		bottom: 20,
+	},
+	buttonSearchStyle: {
+		marginHorizontal: 20,
 	},
 });
