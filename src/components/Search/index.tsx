@@ -27,6 +27,9 @@ const Header: React.FC = props => {
 			<SearchBar
 				placeholder="Search for a movie"
 				onChangeText={setInputSearch}
+				onClear={() => {
+					setInputSearch('');
+				}}
 				value={inputSearch}
 				containerStyle={styles.searchBarContainerStyle}
 				inputContainerStyle={styles.searchBarInputContainerStyle}
@@ -124,8 +127,7 @@ const Search: React.FC = ({navigation}) => {
 				renderItem={({item}) => (
 					<SearchItem detail={item} navigation={navigation} />
 				)}
-				// keyExtractor={item => item.id}
-				// ItemSeparatorComponent={ItemDivider}
+				keyExtractor={item => item.id}
 				ListHeaderComponent={<Header searching={setSearhMovies} />}
 				ListHeaderComponentStyle={styles.ListHeaderComponentStyle}
 				stickyHeaderIndices={[0]}
