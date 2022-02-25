@@ -7,7 +7,7 @@ import Detail from '../components/Detail';
 import Home from '../components/Home';
 import Login from '../components/Login';
 import Search from '../components/Search';
-import Splash from '../components/Splash';
+import Splash from '../components/atoms/Splash';
 
 const Stack = createStackNavigator();
 

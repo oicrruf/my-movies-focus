@@ -7,7 +7,7 @@ const Splash: React.FC = () => {
 		<View style={styles.box}>
 			<LottieView
 				style={styles.animation}
-				source={require('../../assets/movie-cut.json')}
+				source={require('../../../assets/splash.json')}
 				autoPlay
 				loop
 			/>

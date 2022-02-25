@@ -6,6 +6,7 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 import moment from 'moment';
 import styles from './styles';
 import {Icon} from 'react-native-elements';
+import Loading from '../Loading';
 
 interface Props {
 	navigation: object;
@@ -25,7 +26,9 @@ const List: React.FC<Props> = props => {
 						uri: `https://www.themoviedb.org/t/p/w220_and_h330_face/${item.poster_path}`,
 					}}
 					containerStyle={styles.imageList}
-					PlaceholderContent={<ActivityIndicator />}
+					PlaceholderContent={
+						<Loading width={120} height={80} backgroundColor={'#21201e'} />
+					}
 				/>
 				<View style={styles.listBody}>
 					<Text style={styles.itemText}>{item.original_title}</Text>
@@ -61,7 +64,6 @@ const List: React.FC<Props> = props => {
 								uri: `https://www.themoviedb.org/t/p/w220_and_h330_face/${item.poster_path}`,
 							}}
 							containerStyle={styles.imageSheet}
-							PlaceholderContent={<ActivityIndicator />}
 						/>
 						<View style={styles.infoDetail}>
 							<Text style={styles.sheetTitle}>{item.original_title}</Text>
@@ -73,7 +75,7 @@ const List: React.FC<Props> = props => {
 									·
 								</Text>
 								<Text style={styles.sheetSubTitleText}>
-									{item.vote_average.toFixed(2)}
+									{item.vote_average}
 								</Text>
 							</View>
 							<Text

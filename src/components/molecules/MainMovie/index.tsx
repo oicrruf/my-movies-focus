@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import {ActivityIndicator, View} from 'react-native';
+import moment from 'moment';
+import React, {useEffect, useState} from 'react';
+import {View} from 'react-native';
 import {Text} from 'react-native-elements';
 import {Image} from 'react-native-elements/dist/image/Image';
 import LinearGradient from 'react-native-linear-gradient';
 import {getMovieInfo} from '../../../utils';
 import styles from './styles';
-import moment from 'moment';
 
 interface Props {
 	id: number;
@@ -43,7 +43,6 @@ const MainMovie: React.FC<Props> = props => {
 						uri: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${poster_path}`,
 					}}
 					containerStyle={styles.image}
-					PlaceholderContent={<ActivityIndicator />}
 				/>
 				<View style={styles.detail}>
 					<LinearGradient colors={['transparent', '#000', '#000']}>

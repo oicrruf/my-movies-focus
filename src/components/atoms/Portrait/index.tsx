@@ -1,9 +1,10 @@
+import moment from 'moment';
 import React, {useRef} from 'react';
-import {ActivityIndicator, TouchableWithoutFeedback, View} from 'react-native';
+import {TouchableWithoutFeedback, View} from 'react-native';
 import {Button, Text} from 'react-native-elements';
 import {Image} from 'react-native-elements/dist/image/Image';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import moment from 'moment';
+import Loading from '../Loading';
 import styles from './styles';
 
 interface Props {
@@ -24,7 +25,9 @@ const Portrait: React.FC<Props> = props => {
 						uri: `https://www.themoviedb.org/t/p/w220_and_h330_face/${item.poster_path}`,
 					}}
 					containerStyle={styles.image}
-					PlaceholderContent={<ActivityIndicator />}
+					PlaceholderContent={
+						<Loading height={200} width={150} backgroundColor={'#21201e'} />
+					}
 				/>
 				<RBSheet
 					ref={el => (moviesRef.current[index] = el)}
@@ -50,7 +53,6 @@ const Portrait: React.FC<Props> = props => {
 								uri: `https://www.themoviedb.org/t/p/w220_and_h330_face/${item.poster_path}`,
 							}}
 							containerStyle={styles.imageSheet}
-							PlaceholderContent={<ActivityIndicator />}
 						/>
 						<View style={styles.infoDetail}>
 							<Text style={styles.sheetTitle}>{item.original_title}</Text>
