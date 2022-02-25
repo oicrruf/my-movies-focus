@@ -10,14 +10,21 @@ import {
 import {Button, Image, SearchBar, Text} from 'react-native-elements';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {getSearchingMovies, getUpcomingMovies} from '../../utils';
+import {SignOutButton} from '../atoms';
 
-const Header: React.FC = props => {
+interface Props {
+	navigation: any;
+	route: any;
+	searching: any;
+}
+
+const Header: React.FC<Props> = ({searching}) => {
 	const [inputSearch, setInputSearch] = useState('');
 
 	useEffect(() => {
 		getSearchingMovies(inputSearch)
 			.then(m => {
-				props.searching(m.results);
+				searching(m.results);
 			})
 			.catch(e => console.log(e));
 	}, [inputSearch]);
@@ -39,7 +46,7 @@ const Header: React.FC = props => {
 	);
 };
 
-const SearchItem: React.FC = props => {
+const SearchItem: React.FC<Props> = props => {
 	const {detail, index, navigation} = props;
 	const moviesRef = useRef([]);
 
@@ -109,8 +116,19 @@ const SearchItem: React.FC = props => {
 	);
 };
 
-const Search: React.FC = ({navigation}) => {
+const Search: React.FC<Props> = ({navigation}) => {
 	const [searchMovies, setSearhMovies] = useState([]);
+
+	// TODO: Agregar el botón de cerrar sesión
+	// useEffect(() => {
+	// 	navigation.setOptions({
+	// 		headerRight: () => (
+	// 			<View style={styles.headerRight}>
+	// 				<SignOutButton navigation={navigation} />
+	// 			</View>
+	// 		),
+	// 	});
+	// }, [navigation]);
 
 	useEffect(() => {
 		getUpcomingMovies()
@@ -175,4 +193,5 @@ const styles = StyleSheet.create({
 		alignContent: 'center',
 	},
 	itemText: {color: '#cac7c5', textAlignVertical: 'center', margin: 10},
+	headerRight: {flexDirection: 'row'},
 });

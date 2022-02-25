@@ -1,90 +1,82 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
+import {Formik} from 'formik';
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Image, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
-import {getData} from '../../utils';
-import config from '../../config/enviroment.json';
+import * as Yup from 'yup';
+import {getData, singIn} from '../../utils';
+import styles from './styles';
 
 interface Props {
 	navigation: any;
 }
 
-const storeData = async (value: string) => {
-	try {
-		let jsonValue = JSON.stringify(value);
-		await AsyncStorage.setItem('@storage_token', jsonValue);
-	} catch (error) {
-		console.log(error);
-	}
-};
-
-const singIn = async (values: object) => {
-	let {login} = config.server;
-	try {
-		let response = await axios.post(login, values);
-		let data = response.data;
-		storeData(data);
-		return data;
-	} catch (error) {
-		console.log(error);
-	}
-};
+const SignupSchema = Yup.object().shape({
+	email: Yup.string().email('Invalid email').required('Email is required'),
+	password: Yup.string()
+		.min(17, 'You password is short!')
+		.max(17, 'You password is large!')
+		.required('Password is required'),
+});
 
 const Login: React.FC<Props> = props => {
 	const {navigation} = props;
-	const [values, setValues] = useState({});
 	const [isAuthenticate, setIsAuthenticate] = useState(false);
 
 	useEffect(() => {
-		getData('@storage_token').then(token => {
-			token !== null && setIsAuthenticate(true);
-		});
-	}, [navigation]);
-
-	useEffect(() => {
-		isAuthenticate && navigation.navigate('HomeScreen');
+		isAuthenticate && navigation.navigate('Home');
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isAuthenticate]);
-
 	return (
-		<View style={styles.container}>
-			<Input
-				autoCompleteType
-				placeholder="Email"
-				leftIcon={{type: 'font-awesome', name: 'user'}}
-				onChangeText={value => setValues({...values, email: value})}
-			/>
-			<Input
-				autoCompleteType
-				secureTextEntry={true}
-				placeholder="Password"
-				leftIcon={{type: 'font-awesome', name: 'lock'}}
-				onChangeText={value => setValues({...values, password: value})}
-			/>
-			<Button
-				title="Sign In"
-				buttonStyle={styles.button}
-				containerStyle={styles.containerButton}
-				titleStyle={styles.titleButton}
-				onPress={() => {
-					singIn(values);
-				}}
-			/>
-		</View>
+		<Formik
+			initialValues={{email: '', password: ''}}
+			validationSchema={SignupSchema}
+			onSubmit={values => {
+				singIn(values).then(() => {
+					getData('@storage_token').then(token => {
+						token !== undefined && setIsAuthenticate(true);
+					});
+				});
+			}}>
+			{({handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
+				<View style={styles.container}>
+					<Image
+						source={require('../../assets/logo.png')}
+						style={styles.logo}
+					/>
+					<Input
+						autoCompleteType
+						placeholder="Email"
+						leftIcon={{type: 'font-awesome', name: 'user'}}
+						onChangeText={handleChange('email')}
+						onBlur={handleBlur('email')}
+						value={values.email}
+						errorMessage={errors.email && touched.email ? errors.email : ''}
+						style={styles.input}
+					/>
+					<Input
+						autoCompleteType
+						secureTextEntry={true}
+						placeholder="Password"
+						leftIcon={{type: 'font-awesome', name: 'lock'}}
+						onChangeText={handleChange('password')}
+						onBlur={handleBlur('password')}
+						value={values.password}
+						errorMessage={
+							errors.password && touched.password ? errors.password : ''
+						}
+						style={styles.input}
+					/>
+					<Button
+						title="Sign In"
+						buttonStyle={styles.button}
+						containerStyle={styles.containerButton}
+						titleStyle={styles.titleButton}
+						onPress={handleSubmit}
+					/>
+				</View>
+			)}
+		</Formik>
 	);
 };
 
 export default Login;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-	},
-	button: {backgroundColor: 'rgba(39, 39, 39, 1)'},
-	containerButton: {
-		marginHorizontal: 8,
-	},
-	titleButton: {color: 'white', marginHorizontal: 20},
-});

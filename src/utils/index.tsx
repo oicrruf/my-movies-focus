@@ -2,19 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import config from '../config/enviroment.json';
 
-export const getData = async (key: string) => {
-	try {
-		const value = await AsyncStorage.getItem(key);
-		if (value !== null) {
-			console.log(value);
-			return value;
-		}
-	} catch (error) {
-		console.log(error);
-	}
-	return false;
-};
-
 export const getPopularMovies = async () => {
 	try {
 		let response = await axios.get(
@@ -56,5 +43,52 @@ export const getSearchingMovies = async (name: string) => {
 		return response.data;
 	} catch (error) {
 		console.log(error);
+	}
+};
+
+export const storeData = async (value: string) => {
+	try {
+		let jsonValue = JSON.stringify(value);
+		await AsyncStorage.setItem('@storage_token', jsonValue);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const singIn = async (values: object) => {
+	let {login} = config.server;
+
+	console.log(values, login);
+	try {
+		let response = await axios.post(login, values);
+		let data = response.data;
+
+		console.log(data);
+		storeData(data);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const singOut = async () => {
+	try {
+		await AsyncStorage.removeItem('@storage_token');
+		return await AsyncStorage.getItem('@storage_token');
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const getData = async (key: string) => {
+	try {
+		const value = await AsyncStorage.getItem(key);
+		if (value !== null) {
+			console.log(value);
+			return value;
+		}
+	} catch (error) {
+		console.log(error);
+		return false;
 	}
 };

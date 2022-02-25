@@ -1,19 +1,24 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
-	StyleSheet,
-	View,
-	FlatList,
 	ActivityIndicator,
+	FlatList,
+	StyleSheet,
 	TouchableWithoutFeedback,
+	View,
 } from 'react-native';
+import {Button, Text} from 'react-native-elements';
 import {Image} from 'react-native-elements/dist/image/Image';
-import {getRelatedMovies} from '../../utils';
 import LinearGradient from 'react-native-linear-gradient';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import {Button, Text} from 'react-native-elements';
-import {Icon} from 'react-native-elements';
+import {getRelatedMovies} from '../../utils';
+import {SearchButton, SignOutButton} from '../atoms';
 
-const Detail: React.FC = ({route, navigation}) => {
+interface Props {
+	navigation: any;
+	route: any;
+}
+
+const Detail: React.FC<Props> = ({route, navigation}) => {
 	const [popularMovies, setPopularMovies] = useState([]);
 	const moviesRef = useRef([]);
 
@@ -29,17 +34,10 @@ const Detail: React.FC = ({route, navigation}) => {
 	useEffect(() => {
 		navigation.setOptions({
 			headerRight: () => (
-				<TouchableWithoutFeedback
-					onPress={() => {
-						navigation.navigate('SearchScreen');
-					}}>
-					<Icon
-						name="search"
-						color="#fff"
-						containerStyle={styles.buttonSearchStyle}
-						tvParallaxProperties={undefined}
-					/>
-				</TouchableWithoutFeedback>
+				<View style={styles.headerRight}>
+					<SearchButton navigation={navigation} />
+					<SignOutButton navigation={navigation} />
+				</View>
 			),
 		});
 	}, [navigation]);
@@ -209,4 +207,5 @@ const styles = StyleSheet.create({
 	buttonSearchStyle: {
 		marginHorizontal: 20,
 	},
+	headerRight: {flexDirection: 'row'},
 });
