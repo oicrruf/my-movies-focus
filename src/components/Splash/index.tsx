@@ -7,7 +7,7 @@ const Splash: React.FC = () => {
 		<View style={styles.box}>
 			<LottieView
 				style={styles.animation}
-				source={require('../../../assets/movie-cut.json')}
+				source={require('../../assets/movie-cut.json')}
 				autoPlay
 				loop
 			/>
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: '100%',
 		justifyContent: 'center',
+		backgroundColor: '#000',
 	},
 	animation: {
 		width: '40%',

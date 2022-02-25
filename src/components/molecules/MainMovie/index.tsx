@@ -46,7 +46,7 @@ const MainMovie: React.FC<Props> = props => {
 					PlaceholderContent={<ActivityIndicator />}
 				/>
 				<View style={styles.detail}>
-					<LinearGradient colors={['transparent', '#000']}>
+					<LinearGradient colors={['transparent', '#000', '#000']}>
 						<Text style={styles.title} h3>
 							{original_title}
 						</Text>
@@ -61,7 +61,7 @@ const MainMovie: React.FC<Props> = props => {
 							<Text style={styles.footer}>
 								{moment(release_date).format('YYYY')}
 							</Text>
-							<Text style={styles.footer}>{vote_average}</Text>
+							<Text style={styles.footer}>{vote_average.toFixed(2)}</Text>
 						</View>
 						<Text style={styles.group}>{group}</Text>
 					</LinearGradient>

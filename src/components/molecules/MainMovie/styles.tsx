@@ -13,7 +13,7 @@ export default StyleSheet.create({
 	},
 	detail: {
 		position: 'absolute',
-		bottom: 10,
+		bottom: 25,
 		width: '100%',
 	},
 	others: {flex: 1, marginHorizontal: 10},
