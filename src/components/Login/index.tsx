@@ -1,35 +1,11 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
-import {getData} from '../../utils';
-import config from '../../config/enviroment.json';
+import {getData, singIn} from '../../utils';
 
 interface Props {
 	navigation: any;
 }
-
-const storeData = async (value: string) => {
-	try {
-		let jsonValue = JSON.stringify(value);
-		await AsyncStorage.setItem('@storage_token', jsonValue);
-	} catch (error) {
-		console.log(error);
-	}
-};
-
-const singIn = async (values: object) => {
-	let {login} = config.server;
-	try {
-		let response = await axios.post(login, values);
-		let data = response.data;
-		storeData(data);
-		return data;
-	} catch (error) {
-		console.log(error);
-	}
-};
 
 const Login: React.FC<Props> = props => {
 	const {navigation} = props;
@@ -38,9 +14,9 @@ const Login: React.FC<Props> = props => {
 
 	useEffect(() => {
 		getData('@storage_token').then(token => {
-			token !== null && setIsAuthenticate(true);
+			token !== undefined && setIsAuthenticate(true);
 		});
-	}, [navigation]);
+	}, []);
 
 	useEffect(() => {
 		isAuthenticate && navigation.navigate('HomeScreen');
@@ -68,7 +44,13 @@ const Login: React.FC<Props> = props => {
 				containerStyle={styles.containerButton}
 				titleStyle={styles.titleButton}
 				onPress={() => {
-					singIn(values);
+					singIn(values)
+						.then(() => {
+							setIsAuthenticate(true);
+						})
+						.catch(() => {
+							setIsAuthenticate(false);
+						});
 				}}
 			/>
 		</View>

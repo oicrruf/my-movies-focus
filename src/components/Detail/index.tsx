@@ -209,4 +209,7 @@ const styles = StyleSheet.create({
 	buttonSearchStyle: {
 		marginHorizontal: 20,
 	},
+	buttonLogout: {
+		marginRight: 20,
+	},
 });

@@ -58,7 +58,11 @@ export const HomeScreen = () => {
 				component={Home}
 				options={screenOptionsStyleHeader}
 			/>
-			<Stack.Screen name="Login" component={Login} />
+			<Stack.Screen
+				name="Login"
+				component={Login}
+				options={screenOptionStyle}
+			/>
 			<Stack.Screen
 				name="DetailScreen"
 				component={Detail}

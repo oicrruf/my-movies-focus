@@ -7,7 +7,7 @@ import {
 	TouchableWithoutFeedback,
 } from 'react-native';
 import {Image} from 'react-native-elements/dist/image/Image';
-import {getPopularMovies} from '../../utils';
+import {getPopularMovies, singOut} from '../../utils';
 import LinearGradient from 'react-native-linear-gradient';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {Button, Text} from 'react-native-elements';
@@ -28,17 +28,32 @@ const Home: React.FC = ({navigation}) => {
 	useEffect(() => {
 		navigation.setOptions({
 			headerRight: () => (
-				<TouchableWithoutFeedback
-					onPress={() => {
-						navigation.navigate('SearchScreen');
-					}}>
-					<Icon
-						name="search"
-						color="#fff"
-						containerStyle={styles.buttonSearchStyle}
-						tvParallaxProperties={undefined}
-					/>
-				</TouchableWithoutFeedback>
+				<View style={{flexDirection: 'row'}}>
+					<TouchableWithoutFeedback
+						onPress={() => {
+							navigation.navigate('SearchScreen');
+						}}>
+						<Icon
+							name="search"
+							color="#fff"
+							containerStyle={styles.buttonSearchStyle}
+							tvParallaxProperties={undefined}
+						/>
+					</TouchableWithoutFeedback>
+					<TouchableWithoutFeedback
+						onPress={() => {
+							singOut().then(result => {
+								result === null && navigation.navigate('Login');
+							});
+						}}>
+						<Icon
+							name="logout"
+							color="#fff"
+							containerStyle={styles.buttonLogout}
+							tvParallaxProperties={undefined}
+						/>
+					</TouchableWithoutFeedback>
+				</View>
 			),
 		});
 	}, [navigation]);
@@ -145,6 +160,9 @@ export default Home;
 const styles = StyleSheet.create({
 	buttonSearchStyle: {
 		marginHorizontal: 20,
+	},
+	buttonLogout: {
+		marginRight: 20,
 	},
 	textOverview: {
 		fontSize: 10,
