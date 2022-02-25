@@ -1,8 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
-import {getRelatedMovies} from '../../utils';
-import {Portrait, SearchButton, SignOutButton} from '../atoms';
-import MainMovie from '../molecules/MainMovie';
+import React, {useEffect, useState} from 'react';
+import {FlatList, View} from 'react-native';
+import {getRelatedMovies} from '../../../utils';
+import {Portrait, SearchButton, SignOutButton} from '../../atoms';
+import MainMovie from '../../molecules/MainMovie';
+import styles from './styles';
 
 interface Props {
 	navigation: any;
@@ -68,11 +69,3 @@ const Detail: React.FC<Props> = ({route, navigation}) => {
 };
 
 export default Detail;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#000',
-	},
-	headerRight: {flexDirection: 'row'},
-});

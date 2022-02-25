@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {Image, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import * as Yup from 'yup';
-import {getData, singIn} from '../../utils';
+import {getData, singIn} from '../../../utils';
 import styles from './styles';
 
 interface Props {
@@ -40,7 +40,7 @@ const Login: React.FC<Props> = props => {
 			{({handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
 				<View style={styles.container}>
 					<Image
-						source={require('../../assets/logo.png')}
+						source={require('../../../assets/logo.png')}
 						style={styles.logo}
 					/>
 					<Input

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
-import {getPopularMovies} from '../../utils';
-import {Portrait, SearchButton, SignOutButton} from '../atoms';
-import MainMovie from '../molecules/MainMovie';
-
+import {getPopularMovies} from '../../../utils';
+import {Portrait, SearchButton, SignOutButton} from '../../atoms';
+import MainMovie from '../../molecules/MainMovie';
+import styles from './styles';
 interface Props {
 	navigation: any;
 }
@@ -59,11 +59,3 @@ const Home: React.FC<Props> = props => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#000',
-	},
-	headerRight: {flexDirection: 'row'},
-});

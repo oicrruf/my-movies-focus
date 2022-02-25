@@ -1,6 +1,7 @@
 import LottieView from 'lottie-react-native';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
+import styles from './styles';
 
 const Splash: React.FC = () => {
 	return (
@@ -14,20 +15,5 @@ const Splash: React.FC = () => {
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	box: {
-		flex: 1,
-		width: '100%',
-		justifyContent: 'center',
-		backgroundColor: '#000',
-	},
-	animation: {
-		width: '40%',
-		display: 'flex',
-		flexDirection: 'column',
-		alignSelf: 'center',
-	},
-});
 
 export default Splash;

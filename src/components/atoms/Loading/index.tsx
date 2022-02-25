@@ -1,6 +1,7 @@
 import LottieView from 'lottie-react-native';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
+import styles from './styles';
 
 interface Props {
 	height: number;
@@ -21,18 +22,5 @@ const Loading: React.FC<Props> = props => {
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	box: {
-		justifyContent: 'center',
-		backgroundColor: 'black',
-	},
-	animation: {
-		width: '70%',
-		display: 'flex',
-		alignSelf: 'center',
-		justifyContent: 'center',
-	},
-});
 
 export default Loading;
