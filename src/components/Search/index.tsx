@@ -1,31 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {Image, SearchBar} from 'react-native-elements';
+import React, {useEffect, useRef, useState} from 'react';
 import {
-	View,
-	Text,
-	StyleSheet,
-	SafeAreaView,
-	FlatList,
 	ActivityIndicator,
+	FlatList,
+	SafeAreaView,
+	StyleSheet,
+	TouchableWithoutFeedback,
+	View,
 } from 'react-native';
-import {getUpcomingMovies, getSearchingMovies} from '../../utils';
-
-const SearchItem: React.FC = props => {
-	const {detail} = props;
-
-	return (
-		<View style={styles.itemList}>
-			<Image
-				source={{
-					uri: `https://www.themoviedb.org/t/p/w220_and_h330_face/${detail.poster_path}`,
-				}}
-				containerStyle={styles.imageList}
-				PlaceholderContent={<ActivityIndicator />}
-			/>
-			<Text style={styles.itemText}>{detail.original_title}</Text>
-		</View>
-	);
-};
+import {Button, Image, SearchBar, Text} from 'react-native-elements';
+import RBSheet from 'react-native-raw-bottom-sheet';
+import {getSearchingMovies, getUpcomingMovies} from '../../utils';
 
 const Header: React.FC = props => {
 	const [inputSearch, setInputSearch] = useState('');
@@ -52,7 +36,77 @@ const Header: React.FC = props => {
 	);
 };
 
-const Search: React.FC = () => {
+const SearchItem: React.FC = props => {
+	const {detail, index, navigation} = props;
+	const moviesRef = useRef([]);
+
+	return (
+		<TouchableWithoutFeedback onPress={() => moviesRef.current[index].open()}>
+			<View style={styles.itemList}>
+				<Image
+					source={{
+						uri: `https://www.themoviedb.org/t/p/w220_and_h330_face/${detail.poster_path}`,
+					}}
+					containerStyle={styles.imageList}
+					PlaceholderContent={<ActivityIndicator />}
+				/>
+				<Text style={styles.itemText}>{detail.original_title}</Text>
+				<RBSheet
+					ref={el => (moviesRef.current[index] = el)}
+					closeOnDragDown={true}
+					closeOnPressMask={true}
+					customStyles={{
+						container: {
+							backgroundColor: '#2b2b2b',
+							borderTopLeftRadius: 10,
+							borderTopRightRadius: 10,
+							padding: 10,
+						},
+						wrapper: {
+							backgroundColor: 'rgba(0,0,0,0.2)',
+						},
+						draggableIcon: {
+							backgroundColor: '#000',
+						},
+					}}>
+					<View style={styles.info}>
+						<Image
+							source={{
+								uri: `https://www.themoviedb.org/t/p/w220_and_h330_face/${detail.poster_path}`,
+							}}
+							containerStyle={styles.imageSheet}
+							PlaceholderContent={<ActivityIndicator />}
+						/>
+						<View style={styles.infoDetail}>
+							<Text style={styles.text}>{detail.original_title}</Text>
+							<Text style={styles.text}>{detail.release_date}</Text>
+							<Text style={styles.textOverview}>{detail.overview}</Text>
+							<Text style={styles.text}>{detail.vote_average}</Text>
+							<Button
+								title="Details & More"
+								buttonStyle={styles.buttonStyle}
+								containerStyle={styles.containerButtonStyle}
+								titleStyle={styles.titleButtonStyle}
+								onPress={() =>
+									navigation.navigate('DetailScreen', {
+										id: detail.id,
+										backdrop_path: detail.poster_path,
+										original_title: detail.original_title,
+										release_date: detail.release_date,
+										overview: detail.overview,
+										vote_average: detail.vote_average,
+									})
+								}
+							/>
+						</View>
+					</View>
+				</RBSheet>
+			</View>
+		</TouchableWithoutFeedback>
+	);
+};
+
+const Search: React.FC = ({navigation}) => {
 	const [searchMovies, setSearhMovies] = useState([]);
 
 	useEffect(() => {
@@ -67,7 +121,9 @@ const Search: React.FC = () => {
 		<SafeAreaView style={styles.MainContainer}>
 			<FlatList
 				data={searchMovies}
-				renderItem={({item}) => <SearchItem detail={item} />}
+				renderItem={({item}) => (
+					<SearchItem detail={item} navigation={navigation} />
+				)}
 				// keyExtractor={item => item.id}
 				// ItemSeparatorComponent={ItemDivider}
 				ListHeaderComponent={<Header searching={setSearhMovies} />}

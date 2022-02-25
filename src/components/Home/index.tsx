@@ -30,7 +30,7 @@ const Home: React.FC = ({navigation}) => {
 			headerRight: () => (
 				<TouchableWithoutFeedback
 					onPress={() => {
-						navigation.navigate('Search');
+						navigation.navigate('SearchScreen');
 					}}>
 					<Icon
 						name="search"
@@ -111,7 +111,7 @@ const Home: React.FC = ({navigation}) => {
 									containerStyle={styles.containerButtonStyle}
 									titleStyle={styles.titleButtonStyle}
 									onPress={() =>
-										navigation.navigate('Detail', {
+										navigation.navigate('DetailScreen', {
 											id: item.id,
 											backdrop_path: item.poster_path,
 											original_title: item.original_title,

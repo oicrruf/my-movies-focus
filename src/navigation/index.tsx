@@ -1,4 +1,3 @@
-// import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
 	CardStyleInterpolators,
 	createStackNavigator,
@@ -61,15 +60,37 @@ export const HomeScreen = () => {
 			/>
 			<Stack.Screen name="Login" component={Login} />
 			<Stack.Screen
-				name="Detail"
+				name="DetailScreen"
 				component={Detail}
 				options={screenOptionsStyleHeader}
 			/>
+			<Stack.Screen
+				name="SearchScreen"
+				component={SearchScreen}
+				options={screenOptionsStyleHeaderWhitTransition}
+			/>
+		</Stack.Navigator>
+	);
+};
+
+export const DetailScreen = () => {
+	return (
+		<Stack.Navigator screenOptions={screenOptionStyle}>
+			<Stack.Screen name="Detail" component={Detail} />
+			<Stack.Screen name="HomeScreen" component={HomeScreen} />
+		</Stack.Navigator>
+	);
+};
+
+export const SearchScreen = () => {
+	return (
+		<Stack.Navigator screenOptions={screenOptionStyle}>
 			<Stack.Screen
 				name="Search"
 				component={Search}
 				options={screenOptionsStyleHeaderWhitTransition}
 			/>
+			<Stack.Screen name="HomeScreen" component={HomeScreen} />
 		</Stack.Navigator>
 	);
 };
