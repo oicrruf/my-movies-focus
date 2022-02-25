@@ -11,6 +11,7 @@ import {getPopularMovies} from '../../utils';
 import LinearGradient from 'react-native-linear-gradient';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {Button, Text} from 'react-native-elements';
+import {Icon} from 'react-native-elements';
 
 const Home: React.FC = ({navigation}) => {
 	const [popularMovies, setPopularMovies] = useState([]);
@@ -23,6 +24,24 @@ const Home: React.FC = ({navigation}) => {
 			})
 			.catch(e => console.log(e));
 	}, []);
+
+	useEffect(() => {
+		navigation.setOptions({
+			headerRight: () => (
+				<TouchableWithoutFeedback
+					onPress={() => {
+						navigation.navigate('SearchScreen');
+					}}>
+					<Icon
+						name="search"
+						color="#fff"
+						containerStyle={styles.buttonSearchStyle}
+						tvParallaxProperties={undefined}
+					/>
+				</TouchableWithoutFeedback>
+			),
+		});
+	}, [navigation]);
 
 	const renderItem = ({item, index}) =>
 		index === 0 ? (
@@ -92,7 +111,7 @@ const Home: React.FC = ({navigation}) => {
 									containerStyle={styles.containerButtonStyle}
 									titleStyle={styles.titleButtonStyle}
 									onPress={() =>
-										navigation.navigate('Detail', {
+										navigation.navigate('DetailScreen', {
 											id: item.id,
 											backdrop_path: item.poster_path,
 											original_title: item.original_title,
@@ -124,6 +143,9 @@ const Home: React.FC = ({navigation}) => {
 export default Home;
 
 const styles = StyleSheet.create({
+	buttonSearchStyle: {
+		marginHorizontal: 20,
+	},
 	textOverview: {
 		fontSize: 10,
 		color: '#fff',
