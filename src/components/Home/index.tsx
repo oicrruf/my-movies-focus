@@ -1,19 +1,23 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
-	StyleSheet,
-	View,
-	FlatList,
 	ActivityIndicator,
+	FlatList,
+	StyleSheet,
 	TouchableWithoutFeedback,
+	View,
 } from 'react-native';
+import {Button, Text} from 'react-native-elements';
 import {Image} from 'react-native-elements/dist/image/Image';
-import {getPopularMovies, singOut} from '../../utils';
 import LinearGradient from 'react-native-linear-gradient';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import {Button, Text} from 'react-native-elements';
-import {Icon} from 'react-native-elements';
+import {getPopularMovies} from '../../utils';
+import {SearchButton, SignOutButton} from '../atoms';
 
-const Home: React.FC = ({navigation}) => {
+interface Props {
+	navigation: any;
+}
+
+const Home: React.FC<Props> = ({navigation}) => {
 	const [popularMovies, setPopularMovies] = useState([]);
 	const moviesRef = useRef([]);
 
@@ -28,31 +32,9 @@ const Home: React.FC = ({navigation}) => {
 	useEffect(() => {
 		navigation.setOptions({
 			headerRight: () => (
-				<View style={{flexDirection: 'row'}}>
-					<TouchableWithoutFeedback
-						onPress={() => {
-							navigation.navigate('SearchScreen');
-						}}>
-						<Icon
-							name="search"
-							color="#fff"
-							containerStyle={styles.buttonSearchStyle}
-							tvParallaxProperties={undefined}
-						/>
-					</TouchableWithoutFeedback>
-					<TouchableWithoutFeedback
-						onPress={() => {
-							singOut().then(result => {
-								result === null && navigation.navigate('Login');
-							});
-						}}>
-						<Icon
-							name="logout"
-							color="#fff"
-							containerStyle={styles.buttonLogout}
-							tvParallaxProperties={undefined}
-						/>
-					</TouchableWithoutFeedback>
+				<View style={styles.headerRight}>
+					<SearchButton navigation={navigation} />
+					<SignOutButton navigation={navigation} />
 				</View>
 			),
 		});
@@ -161,9 +143,7 @@ const styles = StyleSheet.create({
 	buttonSearchStyle: {
 		marginHorizontal: 20,
 	},
-	buttonLogout: {
-		marginRight: 20,
-	},
+
 	textOverview: {
 		fontSize: 10,
 		color: '#fff',
@@ -219,4 +199,5 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		bottom: 20,
 	},
+	headerRight: {flexDirection: 'row'},
 });

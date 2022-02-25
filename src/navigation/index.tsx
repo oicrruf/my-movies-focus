@@ -3,11 +3,11 @@ import {
 	createStackNavigator,
 } from '@react-navigation/stack';
 import React from 'react';
-import Login from '../components/Login';
-import Splash from '../components/Splash';
-import Home from '../components/Home';
 import Detail from '../components/Detail';
+import Home from '../components/Home';
+import Login from '../components/Login';
 import Search from '../components/Search';
+import Splash from '../components/Splash';
 
 const Stack = createStackNavigator();
 
@@ -15,7 +15,14 @@ const screenOptionStyle = {
 	headerShown: false,
 };
 
-const screenOptionsStyleHeader = {
+const homeScreenOptions = {
+	headerLeft: () => null,
+	title: '',
+	headerTintColor: '#fff',
+	headerTransparent: true,
+};
+
+const detailScreenOptions = {
 	title: '',
 	headerTintColor: '#fff',
 	headerTransparent: true,
@@ -23,11 +30,11 @@ const screenOptionsStyleHeader = {
 
 const screenOptionsStyleHeaderWhitTransition = {
 	title: '',
-	headerTransparent: false,
 	headerStyle: {
 		backgroundColor: '#000',
 	},
 	headerTintColor: '#fff',
+	headerTransparent: false,
 	cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
 };
 
@@ -36,7 +43,11 @@ export const SplashScreen = () => {
 		<Stack.Navigator screenOptions={screenOptionStyle}>
 			<Stack.Screen name="Splash" component={Splash} />
 			<Stack.Screen name="Login" component={Login} />
-			<Stack.Screen name="Home" component={HomeScreen} />
+			<Stack.Screen
+				name="Home"
+				component={HomeScreen}
+				options={homeScreenOptions}
+			/>
 		</Stack.Navigator>
 	);
 };
@@ -45,7 +56,11 @@ export const LoginScreen = () => {
 	return (
 		<Stack.Navigator screenOptions={screenOptionStyle}>
 			<Stack.Screen name="Login" component={Login} />
-			<Stack.Screen name="Home" component={HomeScreen} />
+			<Stack.Screen
+				name="Home"
+				component={HomeScreen}
+				options={homeScreenOptions}
+			/>
 			<Stack.Screen name="Splash" component={Splash} />
 		</Stack.Navigator>
 	);
@@ -54,11 +69,7 @@ export const LoginScreen = () => {
 export const HomeScreen = () => {
 	return (
 		<Stack.Navigator>
-			<Stack.Screen
-				name="Home"
-				component={Home}
-				options={screenOptionsStyleHeader}
-			/>
+			<Stack.Screen name="Home" component={Home} options={homeScreenOptions} />
 			<Stack.Screen
 				name="Login"
 				component={Login}
@@ -67,7 +78,7 @@ export const HomeScreen = () => {
 			<Stack.Screen
 				name="DetailScreen"
 				component={Detail}
-				options={screenOptionsStyleHeader}
+				options={detailScreenOptions}
 			/>
 			<Stack.Screen
 				name="SearchScreen"
@@ -81,7 +92,11 @@ export const HomeScreen = () => {
 export const DetailScreen = () => {
 	return (
 		<Stack.Navigator screenOptions={screenOptionStyle}>
-			<Stack.Screen name="Detail" component={Detail} />
+			<Stack.Screen
+				name="Detail"
+				component={Detail}
+				options={detailScreenOptions}
+			/>
 			<Stack.Screen name="Home" component={HomeScreen} />
 		</Stack.Navigator>
 	);
@@ -95,7 +110,11 @@ export const SearchScreen = () => {
 				component={Search}
 				options={screenOptionsStyleHeaderWhitTransition}
 			/>
-			<Stack.Screen name="Home" component={HomeScreen} />
+			<Stack.Screen
+				name="Home"
+				component={HomeScreen}
+				options={homeScreenOptions}
+			/>
 		</Stack.Navigator>
 	);
 };
