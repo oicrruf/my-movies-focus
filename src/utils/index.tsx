@@ -57,9 +57,13 @@ export const storeData = async (value: string) => {
 
 export const singIn = async (values: object) => {
 	let {login} = config.server;
+
+	console.log(values, login);
 	try {
 		let response = await axios.post(login, values);
 		let data = response.data;
+
+		console.log(data);
 		storeData(data);
 		return data;
 	} catch (error) {

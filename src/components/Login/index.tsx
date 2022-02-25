@@ -13,13 +13,7 @@ const Login: React.FC<Props> = props => {
 	const [isAuthenticate, setIsAuthenticate] = useState(false);
 
 	useEffect(() => {
-		getData('@storage_token').then(token => {
-			token !== undefined && setIsAuthenticate(true);
-		});
-	}, []);
-
-	useEffect(() => {
-		isAuthenticate && navigation.navigate('HomeScreen');
+		isAuthenticate && navigation.navigate('Home');
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isAuthenticate]);
 
@@ -44,13 +38,11 @@ const Login: React.FC<Props> = props => {
 				containerStyle={styles.containerButton}
 				titleStyle={styles.titleButton}
 				onPress={() => {
-					singIn(values)
-						.then(() => {
-							setIsAuthenticate(true);
-						})
-						.catch(() => {
-							setIsAuthenticate(false);
+					singIn(values).then(() => {
+						getData('@storage_token').then(token => {
+							token !== undefined && setIsAuthenticate(true);
 						});
+					});
 				}}
 			/>
 		</View>
