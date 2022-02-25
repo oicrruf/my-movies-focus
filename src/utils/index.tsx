@@ -67,7 +67,7 @@ export const singIn = async (values: object) => {
 		storeData(data);
 		return data;
 	} catch (error) {
-		console.log('singIn:', error);
+		console.log(error);
 	}
 };
 

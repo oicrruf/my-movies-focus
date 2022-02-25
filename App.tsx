@@ -16,7 +16,6 @@ const App = () => {
 
 	useEffect(() => {
 		getData('@storage_token').then(token => {
-			console.log('sd', token);
 			return token !== undefined
 				? setStartComponent(HomeScreen)
 				: setStartComponent(LoginScreen);
