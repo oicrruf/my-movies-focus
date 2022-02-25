@@ -46,6 +46,17 @@ export const getSearchingMovies = async (name: string) => {
 	}
 };
 
+export const getMovieInfo = async (id: number) => {
+	try {
+		let response = await axios.get(
+			`${config.server.movies}/3/movie/${id}?api_key=${config.api_key}`,
+		);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export const storeData = async (value: string) => {
 	try {
 		let jsonValue = JSON.stringify(value);

@@ -12,6 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {getRelatedMovies} from '../../utils';
 import {SearchButton, SignOutButton} from '../atoms';
+import MainMovie from '../molecules/MainMovie';
 
 interface Props {
 	navigation: any;
@@ -28,7 +29,7 @@ const Detail: React.FC<Props> = ({route, navigation}) => {
 		release_date,
 		overview,
 		vote_average,
-		backdrop_path,
+		poster_path,
 	} = route.params;
 
 	useEffect(() => {
@@ -52,25 +53,15 @@ const Detail: React.FC<Props> = ({route, navigation}) => {
 
 	const renderItem = ({item, index}) =>
 		index === 0 ? (
-			<View style={styles.mainContainer}>
-				<View>
-					<Image
-						source={{
-							uri: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${backdrop_path}`,
-						}}
-						containerStyle={styles.main}
-						PlaceholderContent={<ActivityIndicator />}
-					/>
-					<View style={styles.detail}>
-						<LinearGradient colors={['transparent', '#000']}>
-							<Text style={styles.text}>{original_title}</Text>
-							<Text style={styles.text}>{overview}</Text>
-							<Text style={styles.text}>{release_date}</Text>
-							<Text style={styles.text}>{vote_average}</Text>
-						</LinearGradient>
-					</View>
-				</View>
-			</View>
+			<MainMovie
+				id={id}
+				poster_path={poster_path}
+				original_title={original_title}
+				overview={overview}
+				release_date={release_date}
+				vote_average={vote_average}
+				group={'Related movies'}
+			/>
 		) : (
 			<TouchableWithoutFeedback onPress={() => moviesRef.current[index].open()}>
 				<View style={styles.others}>
@@ -120,7 +111,7 @@ const Detail: React.FC<Props> = ({route, navigation}) => {
 									onPress={() =>
 										navigation.navigate('DetailScreen', {
 											id: item.id,
-											backdrop_path: item.poster_path,
+											poster_path: item.poster_path,
 											original_title: item.original_title,
 											release_date: item.release_date,
 											overview: item.overview,

@@ -100,10 +100,10 @@ const SearchItem: React.FC<Props> = props => {
 								onPress={() =>
 									navigation.navigate('DetailScreen', {
 										id: detail.id,
-										backdrop_path: detail.poster_path,
+										poster_path: detail.poster_path,
 										original_title: detail.original_title,
-										release_date: detail.release_date,
 										overview: detail.overview,
+										release_date: detail.release_date,
 										vote_average: detail.vote_average,
 									})
 								}

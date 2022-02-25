@@ -1,8 +1,8 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import 'react-native-gesture-handler';
+import {HomeScreen, LoginScreen, SplashScreen} from './src/navigation';
 import {getData} from './src/utils';
-import {LoginScreen, SplashScreen, HomeScreen} from './src/navigation';
 
 const App = () => {
 	const [loading, setLoading] = useState(true);

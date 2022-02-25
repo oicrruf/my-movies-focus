@@ -8,10 +8,10 @@ import {
 } from 'react-native';
 import {Button, Text} from 'react-native-elements';
 import {Image} from 'react-native-elements/dist/image/Image';
-import LinearGradient from 'react-native-linear-gradient';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {getPopularMovies} from '../../utils';
 import {SearchButton, SignOutButton} from '../atoms';
+import MainMovie from '../molecules/MainMovie';
 
 interface Props {
 	navigation: any;
@@ -42,25 +42,15 @@ const Home: React.FC<Props> = ({navigation}) => {
 
 	const renderItem = ({item, index}) =>
 		index === 0 ? (
-			<View style={styles.mainContainer}>
-				<View>
-					<Image
-						source={{
-							uri: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${item.poster_path}`,
-						}}
-						containerStyle={styles.main}
-						PlaceholderContent={<ActivityIndicator />}
-					/>
-					<View style={styles.detail}>
-						<LinearGradient colors={['transparent', '#000']}>
-							<Text style={styles.text}>{item.original_title}</Text>
-							<Text style={styles.text}>{item.overview}</Text>
-							<Text style={styles.text}>{item.release_date}</Text>
-							<Text style={styles.text}>{item.vote_average}</Text>
-						</LinearGradient>
-					</View>
-				</View>
-			</View>
+			<MainMovie
+				id={item.id}
+				poster_path={item.poster_path}
+				original_title={item.original_title}
+				overview={item.overview}
+				release_date={item.release_date}
+				vote_average={item.vote_average}
+				group={'Top 20'}
+			/>
 		) : (
 			<TouchableWithoutFeedback onPress={() => moviesRef.current[index].open()}>
 				<View style={styles.others}>
@@ -110,10 +100,10 @@ const Home: React.FC<Props> = ({navigation}) => {
 									onPress={() =>
 										navigation.navigate('DetailScreen', {
 											id: item.id,
-											backdrop_path: item.poster_path,
+											poster_path: item.poster_path,
 											original_title: item.original_title,
-											release_date: item.release_date,
 											overview: item.overview,
+											release_date: item.release_date,
 											vote_average: item.vote_average,
 										})
 									}
@@ -181,6 +171,7 @@ const styles = StyleSheet.create({
 		aspectRatio: 9 / 16,
 		width: '25%',
 	},
+	//
 	mainContainer: {
 		flexDirection: 'row',
 		height: 500,
@@ -190,14 +181,15 @@ const styles = StyleSheet.create({
 		aspectRatio: 9 / 11,
 		width: '100%',
 	},
+	detail: {
+		position: 'absolute',
+		bottom: 20,
+	},
 	others: {flex: 1, marginHorizontal: 10},
 	text: {
 		color: '#fff',
 		padding: 5,
 	},
-	detail: {
-		position: 'absolute',
-		bottom: 20,
-	},
+	//
 	headerRight: {flexDirection: 'row'},
 });
