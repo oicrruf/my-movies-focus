@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {getPopularMovies} from '../../../utils';
-import {Portrait, SearchButton, SignOutButton} from '../../atoms';
-import MainMovie from '../../molecules/MainMovie';
+import Portrait from '../../atoms/Portrait';
+import SearchButton from '../../atoms/SearchButton';
+import SignOutButton from '../../atoms/SignOutButton';
+import MainMovie from '../../atoms/MainMovie';
 import styles from './styles';
 interface Props {
 	navigation: any;
@@ -41,6 +43,7 @@ const Home: React.FC<Props> = props => {
 				release_date={item.release_date}
 				vote_average={item.vote_average}
 				group={'Top 20'}
+				key={item.id}
 			/>
 		) : (
 			<Portrait navigation={navigation} item={item} index={index} />

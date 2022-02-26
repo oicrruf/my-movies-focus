@@ -1,43 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, SafeAreaView, View} from 'react-native';
-import {SearchBar, Text} from 'react-native-elements';
-import {getSearchingMovies, getUpcomingMovies} from '../../../utils';
+import {FlatList, SafeAreaView} from 'react-native';
+import {getUpcomingMovies} from '../../../utils';
 import List from '../../atoms/List';
+import SearchBar from '../../atoms/SearchBar';
 import styles from './styles';
 interface Props {
 	navigation: any;
 	route: any;
 	searching: any;
+	detail: any;
+	index: number;
 }
-
-const Header: React.FC<Props> = props => {
-	const {searching} = props;
-	const [inputSearch, setInputSearch] = useState('');
-
-	useEffect(() => {
-		getSearchingMovies(inputSearch)
-			.then(m => {
-				searching(m.results);
-			})
-			.catch(e => console.log(e));
-	}, [inputSearch, searching]);
-
-	return (
-		<View style={{backgroundColor: '#000', flex: 1}}>
-			<SearchBar
-				placeholder="Search for a movie"
-				onChangeText={setInputSearch}
-				onClear={() => {
-					setInputSearch('');
-				}}
-				value={inputSearch}
-				containerStyle={styles.searchBarContainerStyle}
-				inputContainerStyle={styles.searchBarInputContainerStyle}
-			/>
-			<Text style={styles.topSearch}>Top Searches</Text>
-		</View>
-	);
-};
 
 const SearchItem: React.FC<Props> = props => {
 	const {detail, index, navigation} = props;
@@ -74,7 +47,7 @@ const Search: React.FC<Props> = ({navigation}) => {
 					<SearchItem detail={item} navigation={navigation} />
 				)}
 				keyExtractor={item => item.id}
-				ListHeaderComponent={<Header searching={setSearhMovies} />}
+				ListHeaderComponent={<SearchBar searching={setSearhMovies} />}
 				ListHeaderComponentStyle={styles.ListHeaderComponentStyle}
 				stickyHeaderIndices={[0]}
 			/>

@@ -15,6 +15,7 @@ interface Props {
 	release_date: string;
 	vote_average: number;
 	group: string;
+	key: number;
 }
 
 const MainMovie: React.FC<Props> = props => {
@@ -26,6 +27,7 @@ const MainMovie: React.FC<Props> = props => {
 		release_date,
 		vote_average,
 		group,
+		key,
 	} = props;
 	const [genres, setGenres] = useState([]);
 
@@ -36,7 +38,7 @@ const MainMovie: React.FC<Props> = props => {
 	}, [id]);
 
 	return (
-		<View style={styles.mainContainer}>
+		<View style={styles.mainContainer} key={key}>
 			<View>
 				<Image
 					source={{

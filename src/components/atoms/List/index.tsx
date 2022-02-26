@@ -1,12 +1,11 @@
+import moment from 'moment';
 import React, {useRef} from 'react';
-import {ActivityIndicator, TouchableWithoutFeedback, View} from 'react-native';
-import {Button, Text} from 'react-native-elements';
+import {TouchableWithoutFeedback, View} from 'react-native';
+import {Button, Icon, Text} from 'react-native-elements';
 import {Image} from 'react-native-elements/dist/image/Image';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import moment from 'moment';
-import styles from './styles';
-import {Icon} from 'react-native-elements';
 import Loading from '../Loading';
+import styles from './styles';
 
 interface Props {
 	navigation: object;

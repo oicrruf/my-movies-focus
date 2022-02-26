@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, View} from 'react-native';
 import {getRelatedMovies} from '../../../utils';
-import {Portrait, SearchButton, SignOutButton} from '../../atoms';
-import MainMovie from '../../molecules/MainMovie';
+import MainMovie from '../../atoms/MainMovie';
+import Portrait from '../../atoms/Portrait';
+import SearchButton from '../../atoms/SearchButton';
+import SignOutButton from '../../atoms/SignOutButton';
 import styles from './styles';
 
 interface Props {
