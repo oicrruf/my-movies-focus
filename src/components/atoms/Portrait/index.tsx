@@ -1,21 +1,22 @@
 import moment from 'moment';
-import React, {useRef} from 'react';
+import React, {FC, useRef} from 'react';
 import {TouchableWithoutFeedback, View} from 'react-native';
 import {Button, Text} from 'react-native-elements';
 import {Image} from 'react-native-elements/dist/image/Image';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Loading from '../Loading';
 import styles from './styles';
+import {color} from '../../../styles';
 
 interface Props {
-	navigation: object;
+	navigation: any;
 	item: any;
-	index: any;
+	index: number;
 }
 
-const Portrait: React.FC<Props> = props => {
+const Portrait: FC<Props> = props => {
 	const {navigation, item, index} = props;
-	const moviesRef = useRef([]);
+	const moviesRef = useRef<any[]>([]);
 
 	return (
 		<TouchableWithoutFeedback onPress={() => moviesRef.current[index].open()}>
@@ -35,7 +36,7 @@ const Portrait: React.FC<Props> = props => {
 					closeOnPressMask={true}
 					customStyles={{
 						container: {
-							backgroundColor: '#2b2b2b',
+							backgroundColor: color.gray[0],
 							borderTopLeftRadius: 10,
 							borderTopRightRadius: 10,
 							padding: 10,
@@ -44,7 +45,7 @@ const Portrait: React.FC<Props> = props => {
 							backgroundColor: 'rgba(0,0,0,0.2)',
 						},
 						draggableIcon: {
-							backgroundColor: '#000',
+							backgroundColor: color.black[0],
 						},
 					}}>
 					<View style={styles.info}>

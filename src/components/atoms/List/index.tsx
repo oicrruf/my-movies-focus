@@ -4,18 +4,19 @@ import {TouchableWithoutFeedback, View} from 'react-native';
 import {Button, Icon, Text} from 'react-native-elements';
 import {Image} from 'react-native-elements/dist/image/Image';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import {color, font} from '../../../styles';
 import Loading from '../Loading';
 import styles from './styles';
 
 interface Props {
-	navigation: object;
+	navigation: any;
 	item: any;
 	index: any;
 }
 
 const List: React.FC<Props> = props => {
 	const {navigation, item, index} = props;
-	const moviesRef = useRef([]);
+	const moviesRef = useRef<any[]>([]);
 
 	return (
 		<TouchableWithoutFeedback onPress={() => moviesRef.current[index].open()}>
@@ -35,6 +36,7 @@ const List: React.FC<Props> = props => {
 						name="info"
 						type="feather"
 						color="rgba(255,255,255,0.5)"
+						size={font.size.medium}
 						containerStyle={styles.icon}
 						tvParallaxProperties={undefined}
 					/>
@@ -45,7 +47,7 @@ const List: React.FC<Props> = props => {
 					closeOnPressMask={true}
 					customStyles={{
 						container: {
-							backgroundColor: '#2b2b2b',
+							backgroundColor: color.gray[0],
 							borderTopLeftRadius: 10,
 							borderTopRightRadius: 10,
 							padding: 10,
@@ -54,7 +56,7 @@ const List: React.FC<Props> = props => {
 							backgroundColor: 'rgba(0,0,0,0.2)',
 						},
 						draggableIcon: {
-							backgroundColor: '#000',
+							backgroundColor: color.black[0],
 						},
 					}}>
 					<View style={styles.info}>

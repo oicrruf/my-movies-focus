@@ -22,7 +22,7 @@ const Header: React.FC<Props> = props => {
 	}, [inputSearch, searching]);
 
 	return (
-		<View style={{backgroundColor: '#000', flex: 1}}>
+		<View style={styles.container}>
 			<SearchBar
 				placeholder="Search for a movie"
 				onChangeText={setInputSearch}

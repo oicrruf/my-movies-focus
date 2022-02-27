@@ -1,13 +1,14 @@
 import {StyleSheet} from 'react-native';
+import {color, font} from '../../../styles';
 
 export default StyleSheet.create({
 	info: {
 		flexDirection: 'row',
-		backgroundColor: '#2b2b2b',
+		backgroundColor: color.gray[0],
 	},
 	infoDetail: {
 		flexDirection: 'column',
-		backgroundColor: '#2b2b2b',
+		backgroundColor: color.gray[0],
 		marginHorizontal: 10,
 	},
 	imageSheet: {
@@ -16,8 +17,9 @@ export default StyleSheet.create({
 		borderRadius: 4,
 	},
 	textOverview: {
-		fontSize: 12,
-		color: '#fff',
+		fontFamily: font.light,
+		fontSize: font.size.normal,
+		color: color.white[0],
 		width: 265,
 	},
 	buttonStyle: {
@@ -29,9 +31,13 @@ export default StyleSheet.create({
 		width: '100%',
 		marginVertical: 10,
 	},
-	titleButtonStyle: {marginHorizontal: 20, color: '#fff'},
+	titleButtonStyle: {
+		marginHorizontal: 20,
+		color: color.white[0],
+		fontFamily: font.bold,
+	},
 	sheetTitle: {
-		color: '#fff',
+		color: color.white[0],
 		fontSize: 20,
 		fontWeight: '700',
 	},
@@ -58,7 +64,8 @@ export default StyleSheet.create({
 	},
 	itemText: {
 		color: 'rgba(255,255,255,0.6)',
-		fontSize: 15,
+		fontSize: font.size.normal,
+		fontFamily: font.regular,
 		textAlignVertical: 'center',
 		margin: 20,
 	},
@@ -69,7 +76,7 @@ export default StyleSheet.create({
 		width: '100%',
 	},
 	icon: {
-		width: 65,
+		width: 40,
 		justifyContent: 'center',
 	},
 });

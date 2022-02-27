@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {font, color} from '../../../styles';
 
 export default StyleSheet.create({
 	mainContainer: {
@@ -18,6 +19,8 @@ export default StyleSheet.create({
 	},
 	others: {flex: 1, marginHorizontal: 10},
 	text: {
+		fontFamily: font.light,
+		fontSize: font.size.normal,
 		color: 'rgba(255, 255, 255, 0.8)',
 		padding: 10,
 		width: '100%',
@@ -29,26 +32,31 @@ export default StyleSheet.create({
 		marginHorizontal: 20,
 	},
 	genresText: {
-		fontSize: 13,
-		color: '#fff',
+		fontFamily: font.medium,
+		fontSize: font.size.small,
+		color: 'rgba(255, 255, 255, 0.8)',
 	},
 	title: {
-		color: '#fff',
+		fontFamily: font.bold,
+		fontSize: font.size.lg,
+		color: color.white[0],
 		textAlign: 'center',
 		textShadowColor: 'rgba(0, 0, 0, 1)',
 		textShadowOffset: {width: -1, height: 1},
 		textShadowRadius: 10,
 		paddingHorizontal: 10,
-	},
-	footer: {
-		color: 'rgba(255, 255, 255, 0.6)',
-		fontWeight: '700',
 		marginBottom: 10,
 	},
+	footer: {
+		fontFamily: font.bold,
+		fontSize: font.size.medium,
+		color: 'rgba(255, 255, 255, 0.7)',
+		marginBottom: 15,
+	},
 	group: {
-		color: '#fff',
-		fontSize: 18,
-		fontWeight: '700',
+		fontFamily: font.bold,
+		color: color.white[0],
+		fontSize: font.size.medium,
 		padding: 10,
 	},
 });

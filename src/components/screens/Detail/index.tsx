@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Detail: React.FC<Props> = ({route, navigation}) => {
-	const [popularMovies, setPopularMovies] = useState([]);
+	const [popularMovies, setPopularMovies] = useState<any[]>([]);
 
 	const {
 		id,
@@ -47,6 +47,7 @@ const Detail: React.FC<Props> = ({route, navigation}) => {
 		index === 0 ? (
 			<MainMovie
 				id={id}
+				key={id}
 				poster_path={poster_path}
 				original_title={original_title}
 				overview={overview}

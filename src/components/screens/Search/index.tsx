@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {FlatList, SafeAreaView} from 'react-native';
 import {getUpcomingMovies} from '../../../utils';
 import List from '../../atoms/List';
@@ -12,24 +12,8 @@ interface Props {
 	index: number;
 }
 
-const SearchItem: React.FC<Props> = props => {
-	const {detail, index, navigation} = props;
-	return <List navigation={navigation} item={detail} index={index} />;
-};
-
-const Search: React.FC<Props> = ({navigation}) => {
-	const [searchMovies, setSearhMovies] = useState([]);
-
-	// TODO: Agregar el botón de cerrar sesión
-	// useEffect(() => {
-	// 	navigation.setOptions({
-	// 		headerRight: () => (
-	// 			<View style={styles.headerRight}>
-	// 				<SignOutButton navigation={navigation} />
-	// 			</View>
-	// 		),
-	// 	});
-	// }, [navigation]);
+const Search: FC<Props> = ({navigation}) => {
+	const [searchMovies, setSearhMovies] = useState<any[]>([]);
 
 	useEffect(() => {
 		getUpcomingMovies()
@@ -43,8 +27,8 @@ const Search: React.FC<Props> = ({navigation}) => {
 		<SafeAreaView style={styles.MainContainer}>
 			<FlatList
 				data={searchMovies}
-				renderItem={({item}) => (
-					<SearchItem detail={item} navigation={navigation} />
+				renderItem={({item, index}) => (
+					<List navigation={navigation} item={item} index={index} />
 				)}
 				keyExtractor={item => item.id}
 				ListHeaderComponent={<SearchBar searching={setSearhMovies} />}

@@ -5,6 +5,7 @@ import {Button, Input} from 'react-native-elements';
 import * as Yup from 'yup';
 import {getData, singIn} from '../../../utils';
 import styles from './styles';
+import Text from '../../atoms/Text';
 
 interface Props {
 	navigation: any;

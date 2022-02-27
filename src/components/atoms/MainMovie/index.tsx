@@ -1,11 +1,12 @@
 import moment from 'moment';
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Text} from 'react-native-elements';
 import {Image} from 'react-native-elements/dist/image/Image';
 import LinearGradient from 'react-native-linear-gradient';
 import {getMovieInfo} from '../../../utils';
 import styles from './styles';
+import {color} from '../../../styles';
 
 interface Props {
 	id: number;
@@ -18,7 +19,7 @@ interface Props {
 	key: number;
 }
 
-const MainMovie: React.FC<Props> = props => {
+const MainMovie: FC<Props> = props => {
 	const {
 		id,
 		poster_path,
@@ -29,7 +30,7 @@ const MainMovie: React.FC<Props> = props => {
 		group,
 		key,
 	} = props;
-	const [genres, setGenres] = useState([]);
+	const [genres, setGenres] = useState<any[]>([]);
 
 	useEffect(() => {
 		getMovieInfo(id)
@@ -47,11 +48,9 @@ const MainMovie: React.FC<Props> = props => {
 					containerStyle={styles.image}
 				/>
 				<View style={styles.detail}>
-					<LinearGradient colors={['transparent', '#000', '#000']}>
-						<Text style={styles.title} h3>
-							{original_title}
-						</Text>
-
+					<LinearGradient
+						colors={['transparent', color.black[0], color.black[0]]}>
+						<Text style={styles.title}>{original_title}</Text>
 						<View style={styles.row}>
 							{genres.map(genre => (
 								<Text style={styles.genresText}>{genre.name}</Text>

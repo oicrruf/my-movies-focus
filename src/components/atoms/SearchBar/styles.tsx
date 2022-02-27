@@ -1,17 +1,20 @@
 import {StyleSheet} from 'react-native';
+import {color, font} from '../../../styles';
 
 export default StyleSheet.create({
-	searchBarContainerStyle: {height: 55, backgroundColor: '#000'},
-	searchBarInputContainerStyle: {backgroundColor: '#393e42', height: 35},
+	searchBarContainerStyle: {backgroundColor: color.black[0]},
+	searchBarInputContainerStyle: {backgroundColor: color.gray[1]},
 	MainContainer: {
 		flex: 1,
 		backgroundColor: 'white',
 	},
 	topSearch: {
-		color: '#fff',
+		color: color.white[0],
 		marginHorizontal: 10,
-		marginBottom: 10,
-		fontWeight: '900',
-		fontSize: 20,
+		marginTop: 5,
+		marginBottom: 15,
+		fontFamily: font.bold,
+		fontSize: font.size.medium,
 	},
+	container: {backgroundColor: color.black[0], flex: 1},
 });

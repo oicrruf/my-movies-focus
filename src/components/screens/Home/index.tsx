@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import React, {FC, useEffect, useState} from 'react';
+import {FlatList, View} from 'react-native';
 import {getPopularMovies} from '../../../utils';
+import MainMovie from '../../atoms/MainMovie';
 import Portrait from '../../atoms/Portrait';
 import SearchButton from '../../atoms/SearchButton';
 import SignOutButton from '../../atoms/SignOutButton';
-import MainMovie from '../../atoms/MainMovie';
 import styles from './styles';
 interface Props {
 	navigation: any;
 }
 
-const Home: React.FC<Props> = props => {
+const Home: FC<Props> = props => {
 	const {navigation} = props;
-	const [popularMovies, setPopularMovies] = useState([]);
+	const [popularMovies, setPopularMovies] = useState<any[]>([]);
 
 	useEffect(() => {
 		getPopularMovies()
@@ -42,11 +42,13 @@ const Home: React.FC<Props> = props => {
 				overview={item.overview}
 				release_date={item.release_date}
 				vote_average={item.vote_average}
-				group={'Top 20'}
+				group={'Popular Movies'}
 				key={item.id}
 			/>
 		) : (
-			<Portrait navigation={navigation} item={item} index={index} />
+			index <= 14 && (
+				<Portrait navigation={navigation} item={item} index={index} />
+			)
 		);
 
 	return (
