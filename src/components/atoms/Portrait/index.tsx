@@ -7,6 +7,10 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 import Loading from '../Loading';
 import styles from './styles';
 import {color} from '../../../styles';
+import {
+	widthPercentageToDP as wp,
+	heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 interface Props {
 	navigation: any;
@@ -45,7 +49,7 @@ const Portrait: FC<Props> = props => {
 							backgroundColor: 'rgba(0,0,0,0.2)',
 						},
 						draggableIcon: {
-							backgroundColor: color.black[0],
+							backgroundColor: color.gray[1],
 						},
 					}}>
 					<View style={styles.info}>
@@ -74,24 +78,24 @@ const Portrait: FC<Props> = props => {
 								numberOfLines={7}>
 								{item.overview}
 							</Text>
+							<Button
+								title="Details & More"
+								buttonStyle={styles.buttonStyle}
+								containerStyle={styles.containerButtonStyle}
+								titleStyle={styles.titleButtonStyle}
+								onPress={() =>
+									navigation.navigate('DetailScreen', {
+										id: item.id,
+										poster_path: item.poster_path,
+										original_title: item.original_title,
+										overview: item.overview,
+										release_date: item.release_date,
+										vote_average: item.vote_average,
+									})
+								}
+							/>
 						</View>
 					</View>
-					<Button
-						title="Details & More"
-						buttonStyle={styles.buttonStyle}
-						containerStyle={styles.containerButtonStyle}
-						titleStyle={styles.titleButtonStyle}
-						onPress={() =>
-							navigation.navigate('DetailScreen', {
-								id: item.id,
-								poster_path: item.poster_path,
-								original_title: item.original_title,
-								overview: item.overview,
-								release_date: item.release_date,
-								vote_average: item.vote_average,
-							})
-						}
-					/>
 				</RBSheet>
 			</View>
 		</TouchableWithoutFeedback>

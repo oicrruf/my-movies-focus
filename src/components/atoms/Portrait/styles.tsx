@@ -1,5 +1,9 @@
 import {StyleSheet} from 'react-native';
 import {color, font} from '../../../styles';
+import {
+	widthPercentageToDP as wp,
+	heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export default StyleSheet.create({
 	info: {
@@ -20,7 +24,7 @@ export default StyleSheet.create({
 		fontFamily: font.light,
 		fontSize: font.size.normal,
 		color: color.white[0],
-		width: 265,
+		width: wp(68),
 	},
 	image: {
 		aspectRatio: 9 / 16,
@@ -37,9 +41,8 @@ export default StyleSheet.create({
 		borderRadius: 3,
 	},
 	containerButtonStyle: {
-		height: 40,
-		width: '100%',
-		marginVertical: 10,
+		marginVertical: hp(2.7),
+		width: wp(68),
 	},
 	titleButtonStyle: {
 		marginHorizontal: 20,
@@ -47,10 +50,10 @@ export default StyleSheet.create({
 		fontFamily: font.bold,
 	},
 	sheetTitle: {
+		width: wp(68),
 		color: color.white[0],
 		fontFamily: font.bold,
 		fontSize: font.size.medium,
-		fontWeight: '700',
 	},
 	sheetSubTitleText: {
 		color: 'rgba(255,255,255,0.4)',

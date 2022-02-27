@@ -40,32 +40,30 @@ const MainMovie: FC<Props> = props => {
 
 	return (
 		<View style={styles.mainContainer} key={key}>
-			<View>
-				<Image
-					source={{
-						uri: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${poster_path}`,
-					}}
-					containerStyle={styles.image}
-				/>
-				<View style={styles.detail}>
-					<LinearGradient
-						colors={['transparent', color.black[0], color.black[0]]}>
-						<Text style={styles.title}>{original_title}</Text>
-						<View style={styles.row}>
-							{genres.map(genre => (
-								<Text style={styles.genresText}>{genre.name}</Text>
-							))}
-						</View>
-						<Text style={styles.text}>{overview}</Text>
-						<View style={styles.row}>
-							<Text style={styles.footer}>
-								{moment(release_date).format('YYYY')}
-							</Text>
-							<Text style={styles.footer}>{vote_average.toFixed(2)}</Text>
-						</View>
-						<Text style={styles.group}>{group}</Text>
-					</LinearGradient>
-				</View>
+			<Image
+				source={{
+					uri: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${poster_path}`,
+				}}
+				containerStyle={styles.image}
+			/>
+			<View style={styles.detail}>
+				<LinearGradient
+					colors={['transparent', color.black[0], color.black[0]]}>
+					<Text style={styles.title}>{original_title}</Text>
+					<View style={styles.row}>
+						{genres.map(genre => (
+							<Text style={styles.genresText}>{genre.name}</Text>
+						))}
+					</View>
+					<Text style={styles.text}>{overview}</Text>
+					<View style={styles.row}>
+						<Text style={styles.footer}>
+							{moment(release_date).format('YYYY')}
+						</Text>
+						<Text style={styles.footer}>{vote_average.toFixed(2)}</Text>
+					</View>
+					<Text style={styles.group}>{group}</Text>
+				</LinearGradient>
 			</View>
 		</View>
 	);

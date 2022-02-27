@@ -1,5 +1,9 @@
 import {StyleSheet} from 'react-native';
 import {color, font} from '../../../styles';
+import {
+	widthPercentageToDP as wp,
+	heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export default StyleSheet.create({
 	info: {
@@ -20,16 +24,15 @@ export default StyleSheet.create({
 		fontFamily: font.light,
 		fontSize: font.size.normal,
 		color: color.white[0],
-		width: 265,
+		width: wp(68),
 	},
 	buttonStyle: {
 		backgroundColor: 'rgba(0, 0, 0, 0.2)',
 		borderRadius: 3,
 	},
 	containerButtonStyle: {
-		height: 40,
-		width: '100%',
-		marginVertical: 10,
+		marginVertical: hp(2.7),
+		width: wp(68),
 	},
 	titleButtonStyle: {
 		marginHorizontal: 20,
@@ -37,9 +40,10 @@ export default StyleSheet.create({
 		fontFamily: font.bold,
 	},
 	sheetTitle: {
+		width: wp(68),
 		color: color.white[0],
-		fontSize: 20,
-		fontWeight: '700',
+		fontFamily: font.bold,
+		fontSize: font.size.medium,
 	},
 	sheetSubTitleText: {
 		color: 'rgba(255,255,255,0.4)',
@@ -53,8 +57,8 @@ export default StyleSheet.create({
 		marginHorizontal: 5,
 	},
 	imageList: {
-		height: 80,
-		width: 120,
+		height: hp(13),
+		width: wp(35),
 	},
 	itemList: {
 		backgroundColor: '#21201E',
@@ -68,6 +72,7 @@ export default StyleSheet.create({
 		fontFamily: font.regular,
 		textAlignVertical: 'center',
 		margin: 20,
+		width: wp(40),
 	},
 	listBody: {
 		flexDirection: 'row',
