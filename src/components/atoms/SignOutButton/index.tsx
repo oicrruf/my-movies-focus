@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {TouchableWithoutFeedback} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {color} from '../../../styles';
@@ -9,7 +9,7 @@ interface Props {
 	navigation: any;
 }
 
-const SignOutButton: React.FC<Props> = props => {
+const SignOutButton: FC<Props> = props => {
 	const {navigation} = props;
 
 	return (

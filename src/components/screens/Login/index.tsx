@@ -1,11 +1,10 @@
 import {Formik} from 'formik';
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Image, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import * as Yup from 'yup';
 import {getData, singIn} from '../../../utils';
 import styles from './styles';
-import Text from '../../atoms/Text';
 
 interface Props {
 	navigation: any;
@@ -14,17 +13,17 @@ interface Props {
 const SignupSchema = Yup.object().shape({
 	email: Yup.string().email('Invalid email').required('Email is required'),
 	password: Yup.string()
-		.min(17, 'You password is short!')
-		.max(17, 'You password is large!')
+		.min(10, 'You password is short!')
+		.max(10, 'You password is large!')
 		.required('Password is required'),
 });
 
-const Login: React.FC<Props> = props => {
+const Login: FC<Props> = props => {
 	const {navigation} = props;
 	const [isAuthenticate, setIsAuthenticate] = useState(false);
 
 	useEffect(() => {
-		isAuthenticate && navigation.navigate('Home');
+		isAuthenticate && navigation.navigate('HomeScreen');
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isAuthenticate]);
 	return (

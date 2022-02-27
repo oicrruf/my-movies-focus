@@ -1,5 +1,5 @@
 import LottieView from 'lottie-react-native';
-import React from 'react';
+import React, {FC} from 'react';
 import {View} from 'react-native';
 import styles from './styles';
 
@@ -9,7 +9,7 @@ interface Props {
 	backgroundColor: string;
 }
 
-const Loading: React.FC<Props> = props => {
+const Loading: FC<Props> = props => {
 	const {width, height, backgroundColor} = props;
 	return (
 		<View style={[styles.box, {width, height, backgroundColor}]}>

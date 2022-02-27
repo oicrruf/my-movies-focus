@@ -4,13 +4,9 @@ import {TouchableWithoutFeedback, View} from 'react-native';
 import {Button, Text} from 'react-native-elements';
 import {Image} from 'react-native-elements/dist/image/Image';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import {color} from '../../../styles';
 import Loading from '../Loading';
 import styles from './styles';
-import {color} from '../../../styles';
-import {
-	widthPercentageToDP as wp,
-	heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 
 interface Props {
 	navigation: any;
