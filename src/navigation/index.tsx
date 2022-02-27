@@ -3,11 +3,11 @@ import {
 	createStackNavigator,
 } from '@react-navigation/stack';
 import React from 'react';
-import Detail from '../components/Detail';
-import Home from '../components/Home';
-import Login from '../components/Login';
-import Search from '../components/Search';
-import Splash from '../components/Splash';
+import Detail from '../components/screens/Detail';
+import Home from '../components/screens/Home';
+import Login from '../components/screens/Login';
+import Search from '../components/screens/Search';
+import Splash from '../components/atoms/Splash';
 
 const Stack = createStackNavigator();
 
