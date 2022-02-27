@@ -1,21 +1,25 @@
 import {StyleSheet} from 'react-native';
 import {font, color} from '../../../styles';
+import {
+	widthPercentageToDP as wp,
+	heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export default StyleSheet.create({
 	mainContainer: {
 		flexDirection: 'row',
-		height: 550,
-		width: '100%',
+		width: wp(100),
+		height: hp(70),
 	},
 	image: {
-		aspectRatio: 9 / 12,
-		width: '100%',
+		height: hp(70),
+		width: wp(100),
 		opacity: 0.6,
 	},
 	detail: {
 		position: 'absolute',
-		bottom: 25,
-		width: '100%',
+		bottom: -30,
+		width: wp(100),
 	},
 	others: {flex: 1, marginHorizontal: 10},
 	text: {
@@ -23,13 +27,14 @@ export default StyleSheet.create({
 		fontSize: font.size.normal,
 		color: 'rgba(255, 255, 255, 0.8)',
 		padding: 10,
-		width: '100%',
+		width: wp(100),
 		textAlign: 'center',
 	},
 	row: {
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		marginHorizontal: 20,
+		marginBottom: 0,
 	},
 	genresText: {
 		fontFamily: font.medium,
@@ -58,5 +63,6 @@ export default StyleSheet.create({
 		color: color.white[0],
 		fontSize: font.size.medium,
 		padding: 10,
+		marginBottom: 40,
 	},
 });

@@ -7,6 +7,10 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 import {color, font} from '../../../styles';
 import Loading from '../Loading';
 import styles from './styles';
+import {
+	widthPercentageToDP as wp,
+	heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 interface Props {
 	navigation: any;
@@ -27,11 +31,17 @@ const List: React.FC<Props> = props => {
 					}}
 					containerStyle={styles.imageList}
 					PlaceholderContent={
-						<Loading width={120} height={80} backgroundColor={'#21201e'} />
+						<Loading
+							width={wp(35)}
+							height={hp(13)}
+							backgroundColor={'#21201e'}
+						/>
 					}
 				/>
 				<View style={styles.listBody}>
-					<Text style={styles.itemText}>{item.original_title}</Text>
+					<Text style={styles.itemText} numberOfLines={3}>
+						{item.original_title}
+					</Text>
 					<Icon
 						name="info"
 						type="feather"
@@ -82,27 +92,27 @@ const List: React.FC<Props> = props => {
 							<Text
 								style={styles.textOverview}
 								ellipsizeMode="tail"
-								numberOfLines={7}>
+								numberOfLines={6}>
 								{item.overview}
 							</Text>
+							<Button
+								title="Details & More"
+								buttonStyle={styles.buttonStyle}
+								containerStyle={styles.containerButtonStyle}
+								titleStyle={styles.titleButtonStyle}
+								onPress={() =>
+									navigation.navigate('DetailScreen', {
+										id: item.id,
+										poster_path: item.poster_path,
+										original_title: item.original_title,
+										overview: item.overview,
+										release_date: item.release_date,
+										vote_average: item.vote_average,
+									})
+								}
+							/>
 						</View>
 					</View>
-					<Button
-						title="Details & More"
-						buttonStyle={styles.buttonStyle}
-						containerStyle={styles.containerButtonStyle}
-						titleStyle={styles.titleButtonStyle}
-						onPress={() =>
-							navigation.navigate('DetailScreen', {
-								id: item.id,
-								poster_path: item.poster_path,
-								original_title: item.original_title,
-								overview: item.overview,
-								release_date: item.release_date,
-								vote_average: item.vote_average,
-							})
-						}
-					/>
 				</RBSheet>
 			</View>
 		</TouchableWithoutFeedback>

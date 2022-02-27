@@ -1,4 +1,8 @@
 import {StyleSheet} from 'react-native';
+import {
+	heightPercentageToDP as hp,
+	widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import {color, font} from '../../../styles';
 
 export default StyleSheet.create({
@@ -6,6 +10,7 @@ export default StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		backgroundColor: color.black[0],
+		paddingHorizontal: wp(3),
 	},
 	button: {
 		backgroundColor: 'rgba(39, 39, 39, 1)',
@@ -13,8 +18,8 @@ export default StyleSheet.create({
 		borderWidth: 1,
 	},
 	containerButton: {
-		marginTop: 20,
-		marginHorizontal: 8,
+		marginTop: hp(4),
+		marginHorizontal: wp(1.5),
 	},
 	titleButton: {
 		color: 'white',
@@ -23,10 +28,10 @@ export default StyleSheet.create({
 		fontSize: font.size.medium,
 	},
 	logo: {
-		height: 150,
-		width: 150,
+		height: wp(38),
+		width: wp(38),
 		alignSelf: 'center',
-		marginBottom: 20,
+		marginBottom: hp(4),
 	},
 	input: {
 		fontFamily: font.regular,

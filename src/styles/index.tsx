@@ -1,13 +1,15 @@
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 export const font = {
 	bold: 'Montserrat-Bold',
 	light: 'Montserrat-Light',
 	medium: 'Montserrat-Medium',
 	regular: 'Montserrat-Regular',
 	size: {
-		lg: 23,
-		medium: 16,
-		normal: 12,
-		small: 10,
+		lg: hp(3.5),
+		medium: hp(2.6),
+		normal: hp(1.5),
+		small: hp(1.3),
 	},
 };
 

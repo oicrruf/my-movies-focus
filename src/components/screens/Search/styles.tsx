@@ -1,19 +1,18 @@
 import {StyleSheet} from 'react-native';
+import {color} from '../../../styles';
 
 export default StyleSheet.create({
 	searchBarContainerStyle: {height: 55, backgroundColor: '#000'},
 	searchBarInputContainerStyle: {backgroundColor: '#393e42', height: 35},
 	MainContainer: {
 		flex: 1,
-		backgroundColor: 'white',
+		backgroundColor: color.gray[0],
 	},
-
 	item: {
 		paddingLeft: 15,
 		paddingTop: 8,
 		paddingBottom: 8,
 	},
-
 	ListHeaderComponentStyle: {
 		borderBottomColor: '#000',
 		borderBottomWidth: 0,
