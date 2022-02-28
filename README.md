@@ -13,6 +13,15 @@ npm install
 npm run android
 ```
 
+For login use:
+
+```
+{
+	"email": "eve.holt@reqres.in",
+	"password": "cityslicka"
+}
+```
+
 ## 🌳 Directories
 
 The project start on App.tsx
