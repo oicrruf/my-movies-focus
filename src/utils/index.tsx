@@ -75,7 +75,6 @@ export const singIn = async (values: object) => {
 		if (values.password !== config.password) {
 			return new Error('Invalid user or password');
 		} else {
-			console.log(data);
 			storeData(data);
 			return data;
 		}
