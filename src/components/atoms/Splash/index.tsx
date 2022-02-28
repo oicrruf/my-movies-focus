@@ -1,9 +1,9 @@
 import LottieView from 'lottie-react-native';
-import React from 'react';
+import React, {FC} from 'react';
 import {View} from 'react-native';
 import styles from './styles';
 
-const Splash: React.FC = () => {
+const Splash: FC = () => {
 	return (
 		<View style={styles.box}>
 			<LottieView

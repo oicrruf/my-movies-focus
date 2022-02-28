@@ -15,7 +15,7 @@ import {
 interface Props {
 	navigation: any;
 	item: any;
-	index: any;
+	index: number;
 }
 
 const List: React.FC<Props> = props => {

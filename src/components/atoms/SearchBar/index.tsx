@@ -11,7 +11,7 @@ interface Props {
 
 const Header: React.FC<Props> = props => {
 	const {searching} = props;
-	const [inputSearch, setInputSearch] = useState('');
+	const [inputSearch, setInputSearch] = useState<string>('');
 
 	useEffect(() => {
 		getSearchingMovies(inputSearch)

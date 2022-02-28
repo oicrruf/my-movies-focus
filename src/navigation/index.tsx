@@ -44,7 +44,7 @@ export const SplashScreen = () => {
 			<Stack.Screen name="Splash" component={Splash} />
 			<Stack.Screen name="Login" component={Login} />
 			<Stack.Screen
-				name="Home"
+				name="HomeScreen"
 				component={HomeScreen}
 				options={homeScreenOptions}
 			/>
@@ -57,7 +57,7 @@ export const LoginScreen = () => {
 		<Stack.Navigator screenOptions={screenOptionStyle}>
 			<Stack.Screen name="Login" component={Login} />
 			<Stack.Screen
-				name="Home"
+				name="HomeScreen"
 				component={HomeScreen}
 				options={homeScreenOptions}
 			/>
@@ -69,7 +69,11 @@ export const LoginScreen = () => {
 export const HomeScreen = () => {
 	return (
 		<Stack.Navigator>
-			<Stack.Screen name="Home" component={Home} options={homeScreenOptions} />
+			<Stack.Screen
+				name="HomeScreen"
+				component={Home}
+				options={homeScreenOptions}
+			/>
 			<Stack.Screen
 				name="Login"
 				component={Login}
@@ -97,7 +101,7 @@ export const DetailScreen = () => {
 				component={Detail}
 				options={detailScreenOptions}
 			/>
-			<Stack.Screen name="Home" component={HomeScreen} />
+			<Stack.Screen name="HomeScreen" component={HomeScreen} />
 		</Stack.Navigator>
 	);
 };
@@ -111,7 +115,7 @@ export const SearchScreen = () => {
 				options={screenOptionsStyleHeaderWhitTransition}
 			/>
 			<Stack.Screen
-				name="Home"
+				name="HomeScreen"
 				component={HomeScreen}
 				options={homeScreenOptions}
 			/>

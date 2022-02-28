@@ -16,7 +16,6 @@ interface Props {
 	release_date: string;
 	vote_average: number;
 	group: string;
-	key: number;
 }
 
 const MainMovie: FC<Props> = props => {
@@ -28,7 +27,6 @@ const MainMovie: FC<Props> = props => {
 		release_date,
 		vote_average,
 		group,
-		key,
 	} = props;
 	const [genres, setGenres] = useState<any[]>([]);
 
@@ -39,7 +37,7 @@ const MainMovie: FC<Props> = props => {
 	}, [id]);
 
 	return (
-		<View style={styles.mainContainer} key={key}>
+		<View style={styles.mainContainer}>
 			<Image
 				source={{
 					uri: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${poster_path}`,
@@ -52,7 +50,9 @@ const MainMovie: FC<Props> = props => {
 					<Text style={styles.title}>{original_title}</Text>
 					<View style={styles.row}>
 						{genres.map(genre => (
-							<Text style={styles.genresText}>{genre.name}</Text>
+							<Text style={styles.genresText} key={genre.id}>
+								{genre.name}
+							</Text>
 						))}
 					</View>
 					<Text style={styles.text}>{overview}</Text>

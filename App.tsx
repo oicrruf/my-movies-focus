@@ -1,13 +1,17 @@
 import {NavigationContainer} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {ThemeProvider} from 'react-native-elements';
-import 'react-native-gesture-handler';
 import {HomeScreen, LoginScreen, SplashScreen} from './src/navigation';
 import {getData} from './src/utils';
+import {LogBox} from 'react-native';
+
+LogBox.ignoreLogs([
+	"[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
+]);
 
 const App = () => {
 	const [loading, setLoading] = useState(true);
-	const [startComponent, setStartComponent] = useState();
+	const [startComponent, setStartComponent] = useState<FC>();
 
 	useEffect(() => {
 		setTimeout(() => {

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {TouchableWithoutFeedback} from 'react-native';
 import {Icon} from 'react-native-elements';
-import styles from './styles';
 import {color} from '../../../styles';
+import styles from './styles';
 
 interface Props {
 	navigation: any;
 }
 
-const SearchButton: React.FC<Props> = props => {
+const SearchButton: FC<Props> = props => {
 	const {navigation} = props;
 	return (
 		<TouchableWithoutFeedback

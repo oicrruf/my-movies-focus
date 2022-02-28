@@ -43,7 +43,6 @@ const Home: FC<Props> = props => {
 				release_date={item.release_date}
 				vote_average={item.vote_average}
 				group={'Popular Movies'}
-				key={item.id}
 			/>
 		) : (
 			index <= 14 && (

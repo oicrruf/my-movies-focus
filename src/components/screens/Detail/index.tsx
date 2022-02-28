@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {FlatList, View} from 'react-native';
 import {getRelatedMovies} from '../../../utils';
 import MainMovie from '../../atoms/MainMovie';
@@ -12,7 +12,7 @@ interface Props {
 	route: any;
 }
 
-const Detail: React.FC<Props> = ({route, navigation}) => {
+const Detail: FC<Props> = ({route, navigation}) => {
 	const [popularMovies, setPopularMovies] = useState<any[]>([]);
 
 	const {
@@ -43,11 +43,10 @@ const Detail: React.FC<Props> = ({route, navigation}) => {
 			.catch(e => console.log(e));
 	}, [id]);
 
-	const renderItem = ({item, index}) =>
+	const renderItem = ({item, index}: {item: number; index: number}) =>
 		index === 0 ? (
 			<MainMovie
 				id={id}
-				key={id}
 				poster_path={poster_path}
 				original_title={original_title}
 				overview={overview}
@@ -56,7 +55,9 @@ const Detail: React.FC<Props> = ({route, navigation}) => {
 				group={'Related movies'}
 			/>
 		) : (
-			<Portrait navigation={navigation} item={item} index={index} />
+			index <= 14 && (
+				<Portrait navigation={navigation} item={item} index={index} />
+			)
 		);
 
 	return (
